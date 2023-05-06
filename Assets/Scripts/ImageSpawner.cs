@@ -18,6 +18,7 @@ public class ImageSpawner : MonoBehaviour {
     public Sprite yellowCirclePrefab;
 
     public List<Sprite> circles;
+    private bool goodCircleTagged = false;
 
     void Start() {
         circles = new List<Sprite> {
@@ -45,9 +46,22 @@ public class ImageSpawner : MonoBehaviour {
 
         Image spriteImage = spriteGO.AddComponent<Image>();
 
-        int randomIndex = Random.Range(0, circles.Count);
-        spriteImage.sprite = circles[randomIndex];
-        circles.RemoveAt(randomIndex);
+        if (!goodCircleTagged) {
+            // Tag good Circle
+            spriteImage.sprite = circles[RandomizeColor.correctColorIndex];
+            circles.RemoveAt(RandomizeColor.correctColorIndex);
+
+            spriteGO.tag = "Good";
+
+            goodCircleTagged = true;
+        } else {
+            // Tag wrong Circle
+            int randomIndex = Random.Range(0, circles.Count);
+            spriteImage.sprite = circles[randomIndex];
+            circles.RemoveAt(randomIndex);
+
+            spriteGO.tag = "Wrong";
+        }
 
         RectTransform rt = spriteGO.GetComponent<RectTransform>();
         rt.anchoredPosition = new Vector2(Random.Range(-canvasWidth / 2f, canvasWidth / 2f),
@@ -63,6 +77,7 @@ public class ImageSpawner : MonoBehaviour {
     }
 
     void OnSpriteClicked(GameObject spriteGO) {
+        Debug.Log(spriteGO.tag);
         Destroy(spriteGO);
     }
 }
