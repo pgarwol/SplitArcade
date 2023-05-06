@@ -1,7 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.EventSystems;
+using System.Collections;
 using UnityEngine.UI;
+using UnityEngine;
+
 
 public class ImageSpawner : MonoBehaviour {
     public Sprite spritePrefab;
@@ -14,6 +16,7 @@ public class ImageSpawner : MonoBehaviour {
     }
 
     void SpawnSprite() {
+        // Spawning Circle
         GameObject spriteGO = new GameObject("Sprite");
         spriteGO.transform.SetParent(transform);
 
@@ -24,5 +27,16 @@ public class ImageSpawner : MonoBehaviour {
         rt.anchoredPosition = new Vector2(Random.Range(-canvasWidth / 2f, canvasWidth / 2f),
                                           Random.Range(-canvasHeight / 2f, canvasHeight / 2f));
         rt.localScale = new Vector2(scale, scale);
+
+        // Interacting with spawned Circle
+        EventTrigger trigger = spriteGO.AddComponent<EventTrigger>();
+        EventTrigger.Entry clickEntry = new EventTrigger.Entry();
+        clickEntry.eventID = EventTriggerType.PointerClick;
+        clickEntry.callback.AddListener((data) => { OnSpriteClicked(spriteGO); });
+        trigger.triggers.Add(clickEntry);
+    }
+
+    void OnSpriteClicked(GameObject spriteGO) {
+        Destroy(spriteGO);
     }
 }
