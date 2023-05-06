@@ -23,10 +23,10 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public void IncreaseSpeed() {
-        speed += 200f;
+        speed *= 1.5f;
     }
 
     public void DecreaseSpeed() {
-        speed -= 200f;
+        speed /= 1.5f;
     }
 }
