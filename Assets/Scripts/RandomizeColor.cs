@@ -17,12 +17,17 @@ public class RandomizeColor : MonoBehaviour {
     public static int correctColorIndex;
 
     void Start () {
+        RndColor();
+    }
+
+    public void RndColor() {
         randomIndex = Random.Range(0, possibilities.Count);
         randomizedColor = possibilities[randomIndex];
-        Debug.Log(randomizedColor);
+        Debug.Log("Randomized color: " + randomizedColor);
 
         correctColorIndex = possibilities.IndexOf(randomizedColor);
-        Debug.Log(correctColorIndex);
+
+        InGameCanvasBehaviour.UpdateColorTMP();
     }
 
 
