@@ -6,13 +6,36 @@ using UnityEngine;
 
 
 public class ImageSpawner : MonoBehaviour {
-    public Sprite spritePrefab;
     private float canvasWidth = 850f;
     private float canvasHeight = 700f;
     public float scale = 0.75f;
 
+    public Sprite blueCirclePrefab;
+    public Sprite greenCirclePrefab;
+    public Sprite pinkCirclePrefab;
+    public Sprite purpleCirclePrefab;
+    public Sprite redCirclePrefab;
+    public Sprite yellowCirclePrefab;
+
+    public List<Sprite> circles;
+
     void Start() {
-        InvokeRepeating("SpawnSprite", 0f, 1f);
+        circles = new List<Sprite> {
+            blueCirclePrefab,
+            greenCirclePrefab,
+            pinkCirclePrefab,
+            purpleCirclePrefab,
+            redCirclePrefab,
+            yellowCirclePrefab
+        };
+
+        // InvokeRepeating("SpawnSprite", 0f, 1f);
+
+        // Spawn all circles
+        int amountOfCircles = circles.Count;
+        for (int i = 0; i < amountOfCircles; i++) {
+            SpawnSprite();
+        }
     }
 
     void SpawnSprite() {
@@ -21,7 +44,10 @@ public class ImageSpawner : MonoBehaviour {
         spriteGO.transform.SetParent(transform);
 
         Image spriteImage = spriteGO.AddComponent<Image>();
-        spriteImage.sprite = spritePrefab;
+
+        int randomIndex = Random.Range(0, circles.Count);
+        spriteImage.sprite = circles[randomIndex];
+        circles.RemoveAt(randomIndex);
 
         RectTransform rt = spriteGO.GetComponent<RectTransform>();
         rt.anchoredPosition = new Vector2(Random.Range(-canvasWidth / 2f, canvasWidth / 2f),
