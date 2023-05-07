@@ -18,10 +18,20 @@ public class GameBehaviour : MonoBehaviour {
     public Sprite yellowCirclePrefab;
 
     public List<Sprite> circles;
-    private bool goodCircleTagged = false;
+    public bool goodCircleTagged = false;
     int amountOfCircles;
 
     void Start() {
+        InitializeRound();
+    }
+
+    public void InitializeRound() {
+        RandomizeColor.RndColor();
+        InitializePossibilitiesList();
+        StartNextRound();   
+    }
+
+    public void InitializePossibilitiesList() {
         circles = new List<Sprite> {
             blueCirclePrefab,
             greenCirclePrefab,
@@ -32,11 +42,9 @@ public class GameBehaviour : MonoBehaviour {
         };
 
         amountOfCircles = circles.Count;
-
-        StartNextRound();
     }
 
-    private void StartNextRound() {
+    public void StartNextRound() {
         for (int i = 0; i < amountOfCircles; i++) {
             SpawnSprite();
         }
@@ -51,11 +59,10 @@ public class GameBehaviour : MonoBehaviour {
 
         if (!goodCircleTagged) {
             // Tag good Circle
-            spriteImage.sprite = circles[RandomizeColor.correctColorIndex];
+            spriteImage.sprite = circles[RandomizeColor.GetCorrectColorIndex()];
             circles.RemoveAt(RandomizeColor.correctColorIndex);
 
             spriteGO.tag = "Good";
-
             goodCircleTagged = true;
         } else {
             // Tag wrong Circle

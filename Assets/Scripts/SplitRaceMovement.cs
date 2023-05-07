@@ -15,7 +15,7 @@ public class SplitRaceMovement : MonoBehaviour {
     }
 
     public void IncreaseSpeed() {
-        speed *= 1.5f;
+        speed *= 1.3f;
     }
 
     public void DecreaseSpeed() {
