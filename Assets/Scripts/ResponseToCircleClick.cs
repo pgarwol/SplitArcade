@@ -4,12 +4,12 @@ using UnityEngine;
 
 
 public class ResponseToCircleClick : MonoBehaviour {
-    static PlayerMovement leftPlayer;
-    static PlayerMovement rightPlayer;
+    static SplitRaceMovement leftPlayer;
+    static SplitRaceMovement rightPlayer;
 
     void Awake() {
-        leftPlayer = GameObject.Find("LeftPlayer").GetComponent<PlayerMovement>();
-        rightPlayer = GameObject.Find("RightPlayer").GetComponent<PlayerMovement>();
+        leftPlayer = GameObject.Find("LeftPlayer").GetComponent<SplitRaceMovement>();
+        rightPlayer = GameObject.Find("RightPlayer").GetComponent<SplitRaceMovement>();
     }
 
     public static void ResponseToClick(string screenSide, string tag) {

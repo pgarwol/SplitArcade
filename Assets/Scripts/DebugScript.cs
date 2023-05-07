@@ -4,15 +4,15 @@ using UnityEngine;
 
 
 public class DebugScript : MonoBehaviour {
-    PlayerMovement leftPlayer;
-    PlayerMovement rightPlayer;
+    SplitRaceMovement leftPlayer;
+    SplitRaceMovement rightPlayer;
     string buttonName;
 
     void Awake() {
         buttonName = gameObject.name;
 
-        leftPlayer = GameObject.Find("LeftPlayer").GetComponent<PlayerMovement>();
-        rightPlayer = GameObject.Find("RightPlayer").GetComponent<PlayerMovement>();
+        leftPlayer = GameObject.Find("LeftPlayer").GetComponent<SplitRaceMovement>();
+        rightPlayer = GameObject.Find("RightPlayer").GetComponent<SplitRaceMovement>();
     }
 
     public void IncreaseSpeedDebug() {
