@@ -5,7 +5,7 @@ using UnityEngine;
 public class SplitRaceMovement : MonoBehaviour {
     public Rigidbody rb;
 
-    [SerializeField] public float speed = 10f;
+    [SerializeField] public float speed = 100f;
     [SerializeField] private float transitionSpeed = 8f;
 
     private void FixedUpdate() {

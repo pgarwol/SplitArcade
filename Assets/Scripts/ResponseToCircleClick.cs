@@ -13,7 +13,7 @@ public class ResponseToCircleClick : MonoBehaviour {
     }
 
     public static void ResponseToClick(string screenSide, string tag) {
-        Debug.Log(screenSide + " " + tag);
+        // Debug.Log(screenSide + " " + tag);
 
         // Left Side of the screen clicked
         if (screenSide.Equals("LeftAnswer")) {
