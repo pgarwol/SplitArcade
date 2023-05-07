@@ -1,7 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using TMPro;
+
 
 public class InGameCanvasBehaviour : MonoBehaviour {
     private static TextMeshProUGUI colorTMP;
@@ -13,6 +14,7 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     public static void UpdateColorTMP() {
         // Update the text of the TextMeshPro component
         colorTMP.text = RandomizeColor.randomizedColor;
+
         colorTMP.color = Color.white;
     }
 }
