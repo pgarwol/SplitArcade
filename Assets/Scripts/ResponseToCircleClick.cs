@@ -27,7 +27,7 @@ public class ResponseToCircleClick : MonoBehaviour {
         }
 
         // Right Side of the screen clicked
-        if (screenSide.Equals("LeftAnswer")) {
+        if (screenSide.Equals("RightAnswer")) {
             if (tag.Equals("Good")) {
                 rightPlayer.IncreaseSpeed();
                 Debug.Log(rightPlayer.name + ", speed: " + rightPlayer.speed);
