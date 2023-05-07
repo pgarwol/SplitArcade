@@ -22,4 +22,5 @@ public class SplitRaceMovement : MonoBehaviour {
         speed /= 1.5f;
     }
 
+
 }

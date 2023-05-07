@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine;
 
 
-public class ImageSpawner : MonoBehaviour {
+public class GameBehaviour : MonoBehaviour {
     private float canvasWidth = 850f;
     private float canvasHeight = 700f;
     public float scale = 0.75f;
@@ -19,6 +19,7 @@ public class ImageSpawner : MonoBehaviour {
 
     public List<Sprite> circles;
     private bool goodCircleTagged = false;
+    int amountOfCircles;
 
     void Start() {
         circles = new List<Sprite> {
@@ -30,10 +31,12 @@ public class ImageSpawner : MonoBehaviour {
             yellowCirclePrefab
         };
 
-        // InvokeRepeating("SpawnSprite", 0f, 1f);
+        amountOfCircles = circles.Count;
 
-        // Spawn all circles
-        int amountOfCircles = circles.Count;
+        StartNextRound();
+    }
+
+    private void StartNextRound() {
         for (int i = 0; i < amountOfCircles; i++) {
             SpawnSprite();
         }
@@ -67,6 +70,7 @@ public class ImageSpawner : MonoBehaviour {
         rt.anchoredPosition = new Vector2(Random.Range(-canvasWidth / 2f, canvasWidth / 2f),
                                           Random.Range(-canvasHeight / 2f, canvasHeight / 2f));
         rt.localScale = new Vector2(scale, scale);
+        rt.rotation = Quaternion.Euler(0f, 0f, Random.Range(0, 360f));
 
         // Interacting with spawned Circle
         EventTrigger trigger = spriteGO.AddComponent<EventTrigger>();
@@ -77,6 +81,7 @@ public class ImageSpawner : MonoBehaviour {
     }
 
     string spritesParentName;
+
     void OnSpriteClicked(GameObject spriteGO) {
         spritesParentName = spriteGO.transform.parent.gameObject.name;
         ResponseToCircleClick.ResponseToClick(spritesParentName, spriteGO.tag);
