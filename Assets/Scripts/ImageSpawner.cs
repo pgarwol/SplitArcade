@@ -81,7 +81,6 @@ public class ImageSpawner : MonoBehaviour {
         spritesParentName = spriteGO.transform.parent.gameObject.name;
         ResponseToCircleClick.ResponseToClick(spritesParentName, spriteGO.tag);
 
-        Debug.Log(spriteGO.tag);
         Destroy(spriteGO);
     }
 }
