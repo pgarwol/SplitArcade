@@ -40,7 +40,7 @@ public class ResponseToCircleClick : MonoBehaviour {
             if (tag.Equals("Good")) {
                 rightPlayer.IncreaseSpeed();
                 Debug.Log(rightPlayer.name + ", speed: " + rightPlayer.speed);
-
+                InGameCanvasBehaviour.colorTMP.text = "";
                 FinishRound();
             }
             else {

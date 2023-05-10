@@ -21,10 +21,21 @@ public class GameBehaviour : MonoBehaviour {
     public bool goodCircleTagged = false;
     int amountOfCircles;
 
-    void Start() {
-        InitializeRound();
-    }
+    public static bool gameStarted = false;
 
+    bool roundIinitialized = false;
+    void Update() {
+        // Debug.Log(gameStarted);
+        if (gameStarted && !roundIinitialized) { 
+            InitializeRoundDelay();
+            roundIinitialized = true;
+        }
+    }
+    
+    public void InitializeRoundDelay() {
+        Invoke("InitializeRound", 1f);
+    }
+    
     public void InitializeRound() {
         RandomizeColor.RndColor();
         InitializePossibilitiesList();
