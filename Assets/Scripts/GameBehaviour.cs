@@ -21,8 +21,15 @@ public class GameBehaviour : MonoBehaviour {
     public bool goodCircleTagged = false;
     int amountOfCircles;
 
-    void Start() {
-        InitializeRound();
+    public static bool gameStarted = false;
+
+    bool roundIinitialized = false;
+    void Update() {
+        // Debug.Log(gameStarted);
+        if (gameStarted && !roundIinitialized) { 
+            InitializeRound();
+            roundIinitialized = true;
+        }
     }
 
     public void InitializeRound() {
