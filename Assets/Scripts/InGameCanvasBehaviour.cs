@@ -5,7 +5,7 @@ using TMPro;
 
 
 public class InGameCanvasBehaviour : MonoBehaviour {
-    private static TextMeshProUGUI colorTMP;
+    public static TextMeshProUGUI colorTMP;
     private static TextMeshProUGUI countdownText;
 
      void Awake() {

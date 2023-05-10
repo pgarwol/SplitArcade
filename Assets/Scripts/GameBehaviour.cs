@@ -27,11 +27,15 @@ public class GameBehaviour : MonoBehaviour {
     void Update() {
         // Debug.Log(gameStarted);
         if (gameStarted && !roundIinitialized) { 
-            InitializeRound();
+            InitializeRoundDelay();
             roundIinitialized = true;
         }
     }
-
+    
+    public void InitializeRoundDelay() {
+        Invoke("InitializeRound", 1f);
+    }
+    
     public void InitializeRound() {
         RandomizeColor.RndColor();
         InitializePossibilitiesList();
