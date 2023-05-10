@@ -75,6 +75,10 @@ public class GameBehaviour : MonoBehaviour {
 
             spriteGO.tag = "Good";
             goodCircleTagged = true;
+
+            // Puting good candy on front
+            SpriteRenderer spriteRenderer = spriteGO.AddComponent<SpriteRenderer>();
+            spriteRenderer.sortingOrder = 100;
         } else {
             // Tag wrong Circle
             int randomIndex = Random.Range(0, circles.Count);
