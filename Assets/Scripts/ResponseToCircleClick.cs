@@ -22,12 +22,16 @@ public class ResponseToCircleClick : MonoBehaviour {
     public static void ResponseToClick(string screenSide, string tag) {
         // Debug.Log(screenSide + " " + tag);
         
+        // -----------------------------------------
+        // TODO: code repetition, add code to method
+        // -----------------------------------------
+        
         // Left Side of the screen clicked
         if (screenSide.Equals("LeftAnswer")) {
             if (tag.Equals("Good")) {
                 leftPlayer.IncreaseSpeed();
                 Debug.Log(leftPlayer.name + ", speed: " + leftPlayer.speed);
-
+                InGameCanvasBehaviour.colorTMP.text = "";
                 FinishRound();
             } else {
                 leftPlayer.DecreaseSpeed();
