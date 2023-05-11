@@ -4,8 +4,23 @@ using UnityEngine;
 
 
 public class FinishLineTrigger : MonoBehaviour {
+    SplitRaceMovement leftPlayer;
+    SplitRaceMovement rightPlayer;
+    string buttonName;
+
+    void Awake() {
+        leftPlayer = GameObject.Find("LeftPlayer").GetComponent<SplitRaceMovement>();
+        rightPlayer = GameObject.Find("RightPlayer").GetComponent<SplitRaceMovement>();
+    }
+
+
+    private string whoWon;
     private void OnTriggerExit(Collider other) {
-        Debug.Log(other.gameObject.name + " won!");
+        whoWon = other.gameObject.name;
+        Debug.Log(whoWon + " won!");
+        
+        leftPlayer.StopTheVehicleSLowly();
+        rightPlayer.StopTheVehicleSLowly();
     }
 
 }
