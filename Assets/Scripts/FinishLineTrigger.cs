@@ -15,13 +15,21 @@ public class FinishLineTrigger : MonoBehaviour {
 
 
     private string whoWon;
+    private string whoLost;
     private void OnTriggerExit(Collider other) {
         whoWon = other.gameObject.name;
+        if (whoWon.Equals("LeftPlayer"))
+            whoLost = "RightPlayer";
+        else if (whoWon.Equals("RightPlayer"))
+            whoLost = "LeftPlayer";
+
         Debug.Log(whoWon + " won!");
 
-        GameBehaviour.FinishGame(whoWon);
+        GameBehaviour.FinishGame(whoWon, whoLost);
         leftPlayer.StopTheVehicleSLowly();
         rightPlayer.StopTheVehicleSLowly();
+
+        Destroy(gameObject);
     }
 
     
