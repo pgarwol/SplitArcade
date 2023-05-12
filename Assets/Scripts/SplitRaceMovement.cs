@@ -25,13 +25,13 @@ public class SplitRaceMovement : MonoBehaviour {
     }
 
     public void StopTheVehicleSLowly() {
-        InvokeRepeating("Brake", 0f, 0.5f);
+        InvokeRepeating("Brake", 0f, 0.2f);
             
     }
 
     private void Brake() {
         if (speed > 0) {
-            speed *= 0.9f;
+            speed *= 0.95f;
             if (speed <= 1f)
                 speed = 0;
         }

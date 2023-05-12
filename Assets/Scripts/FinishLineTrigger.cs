@@ -18,9 +18,12 @@ public class FinishLineTrigger : MonoBehaviour {
     private void OnTriggerExit(Collider other) {
         whoWon = other.gameObject.name;
         Debug.Log(whoWon + " won!");
-        
+
+        GameBehaviour.FinishGame(whoWon);
         leftPlayer.StopTheVehicleSLowly();
         rightPlayer.StopTheVehicleSLowly();
     }
+
+    
 
 }
