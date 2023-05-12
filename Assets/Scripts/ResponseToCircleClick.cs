@@ -7,8 +7,8 @@ public class ResponseToCircleClick : MonoBehaviour {
     static SplitRaceMovement leftPlayer;
     static SplitRaceMovement rightPlayer;
 
-    static NewRound leftSideCanvas;
-    static NewRound rightSideCanvas;
+    public static NewRound leftSideCanvas;
+    public static NewRound rightSideCanvas;
 
     void Awake() {
 
@@ -54,7 +54,7 @@ public class ResponseToCircleClick : MonoBehaviour {
         }
     }
 
-    private static void FinishRound() {
+    public static void FinishRound() {
         RandomizeColor.randomized = false;
         leftSideCanvas.DestroyCandies();
         rightSideCanvas.DestroyCandies();

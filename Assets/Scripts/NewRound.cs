@@ -29,9 +29,10 @@ public class NewRound : MonoBehaviour {
 
             gB1.goodCircleTagged = false;
             gB2.goodCircleTagged = false;
-
+            
             gB1.InitializeRoundDelay();
             gB2.InitializeRoundDelay();
+           
         }
     }
 

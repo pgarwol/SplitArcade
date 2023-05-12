@@ -8,9 +8,23 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     public static TextMeshProUGUI colorTMP;
     private static TextMeshProUGUI countdownText;
 
-     void Awake() {
+    public static Canvas gameResult;
+    private static TextMeshProUGUI winnerText;
+
+    private static Canvas answerCanvas;
+
+    void Awake() {
+        // Countdown
         colorTMP = GameObject.Find("Color").GetComponent<TextMeshProUGUI>();
         countdownText = GameObject.Find("CountdownText").GetComponent<TextMeshProUGUI>();
+
+        // Answers for both players
+        answerCanvas = GameObject.Find("AnswerCanvas").GetComponent<Canvas>();
+
+        // GameResult
+        gameResult = GameObject.Find("GameResult").GetComponent<Canvas>();
+        winnerText = GameObject.Find("WinnerText").GetComponent<TextMeshProUGUI>();
+
     }
 
     void Start() {
@@ -44,6 +58,14 @@ public class InGameCanvasBehaviour : MonoBehaviour {
         } else {
             countdownText.text = "";
         }
+
+    }
+
+
+    
+    public static void ShowWinner(string winner) {
+        answerCanvas.enabled = false;
+        winnerText.text = winner;
 
     }
     

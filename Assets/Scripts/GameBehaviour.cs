@@ -110,4 +110,11 @@ public class GameBehaviour : MonoBehaviour {
 
         Destroy(spriteGO);
     }
+
+    public static void FinishGame(string winner) {
+        ResponseToCircleClick.leftSideCanvas.DestroyCandies();
+        ResponseToCircleClick.rightSideCanvas.DestroyCandies();
+
+        InGameCanvasBehaviour.ShowWinner(winner);
+    }
 }
