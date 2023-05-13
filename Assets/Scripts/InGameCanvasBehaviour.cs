@@ -1,10 +1,16 @@
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
 
 public class InGameCanvasBehaviour : MonoBehaviour {
+    public Sprite redLight;
+    public Sprite greenLight;
+    public Sprite yellowLight;
+    private Image lightImage;
+
     public static TextMeshProUGUI colorTMP;
     private static TextMeshProUGUI countdownText;
 
@@ -15,6 +21,9 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     private static Canvas answerCanvas;
 
     void Awake() {
+        lightImage = GameObject.Find("TrafficLight").GetComponent<Image>();
+        
+
         // Countdown
         colorTMP = GameObject.Find("Color").GetComponent<TextMeshProUGUI>();
         countdownText = GameObject.Find("CountdownText").GetComponent<TextMeshProUGUI>();
@@ -30,35 +39,35 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     }
 
     void Start() {
-        InvokeRepeating("Countdown", 0f, 1.0f);
+        InvokeRepeating("Countdown", 0f, 1.5f);
     }
 
     public static void UpdateColorTMP() {
         // Update the text of the TextMeshPro component
         colorTMP.text = RandomizeColor.randomizedColor;
-
         colorTMP.color = Color.white;
     }
 
-    static int countdownCounter = 3;
+    static int countdownCounter = 2;
     private void Countdown() {
-        if (countdownCounter > 0) {
-            switch (countdownCounter) {
-                case 3: countdownText.color = Color.red; break;
-                case 2: countdownText.color = new Color(1.0f, 0.5f, 0.0f); break;
-                case 1: countdownText.color = Color.yellow; break;
-                default: countdownText.color = Color.white; break;
-            }
-
-            countdownText.text = countdownCounter.ToString();
+        if (countdownCounter == 2) {
+            lightImage.sprite = redLight;
             countdownCounter--;
-        } else if (countdownCounter == 0) {
+            
+        }
+        else if (countdownCounter == 1) {
+            lightImage.sprite = yellowLight;
+            countdownCounter--;
+        }
+        else if (countdownCounter == 0) {
             countdownText.color = Color.green;
-            countdownText.text = "GO!";
+            lightImage.sprite = greenLight;
+            countdownText.text = "Go!";
             GameBehaviour.gameStarted = true;
             countdownCounter--;
         } else {
             countdownText.text = "";
+            Destroy(lightImage);
         }
 
     }
