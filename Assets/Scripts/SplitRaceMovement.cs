@@ -7,17 +7,18 @@ public class SplitRaceMovement : MonoBehaviour {
 
     [SerializeField] public float speed = 100f;
     [SerializeField] private float transitionSpeed = 8f;
-
+    [SerializeField] private AudioClip splashSound;
     private void FixedUpdate() {
         if (GameBehaviour.gameStarted) {
             Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
             Vector3 targetPosition = new Vector3(rb.position.x, rb.position.y, rb.position.z);
-            rb.MovePosition(Vector3.MoveTowards(rb.position, targetPosition, transitionSpeed * Time.fixedDeltaTime) + forwardMove);
+            rb.MovePosition(Vector3.MoveTowards(rb.position, targetPosition, transitionSpeed * Time.fixedDeltaTime) + forwardMove);  
         }
     }
 
     public void IncreaseSpeed() {
         speed *= 1.3f;
+        SoundSystemSingleton.Instance.PlaySfxSound(splashSound);
     }
 
     public void DecreaseSpeed() {

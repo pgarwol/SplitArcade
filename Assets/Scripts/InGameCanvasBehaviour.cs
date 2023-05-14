@@ -11,6 +11,8 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     public Sprite yellowLight;
     private Image lightImage;
 
+    [SerializeField] private AudioClip readySetSound;
+    [SerializeField] private AudioClip goSound;
     public static TextMeshProUGUI colorTMP;
     private static TextMeshProUGUI countdownText;
 
@@ -53,11 +55,12 @@ public class InGameCanvasBehaviour : MonoBehaviour {
         if (countdownCounter == 2) {
             lightImage.sprite = redLight;
             countdownCounter--;
-            
+            SoundSystemSingleton.Instance.PlaySfxSound(readySetSound);
         }
         else if (countdownCounter == 1) {
             lightImage.sprite = yellowLight;
             countdownCounter--;
+            SoundSystemSingleton.Instance.PlaySfxSound(readySetSound);
         }
         else if (countdownCounter == 0) {
             countdownText.color = Color.green;
@@ -65,6 +68,7 @@ public class InGameCanvasBehaviour : MonoBehaviour {
             countdownText.text = "Go!";
             GameBehaviour.gameStarted = true;
             countdownCounter--;
+            SoundSystemSingleton.Instance.PlaySfxSound(goSound);
         } else {
             countdownText.text = "";
             Destroy(lightImage);
