@@ -19,13 +19,13 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     public static Canvas gameResult;
     private static TextMeshProUGUI winnerText;
     private static TextMeshProUGUI loserText;
+    public static Canvas afterGameDecisionCanvas;
 
     private static Canvas answerCanvas;
 
     void Awake() {
         lightImage = GameObject.Find("TrafficLight").GetComponent<Image>();
         
-
         // Countdown
         colorTMP = GameObject.Find("Color").GetComponent<TextMeshProUGUI>();
         countdownText = GameObject.Find("CountdownText").GetComponent<TextMeshProUGUI>();
@@ -38,6 +38,8 @@ public class InGameCanvasBehaviour : MonoBehaviour {
         winnerText = GameObject.Find("WinnerText").GetComponent<TextMeshProUGUI>();
         loserText = GameObject.Find("LoserText").GetComponent<TextMeshProUGUI>();
 
+        afterGameDecisionCanvas = GameObject.Find("AfterGameDecision").GetComponent<Canvas>();
+        afterGameDecisionCanvas.enabled = false;
     }
 
     void Start() {
@@ -45,12 +47,24 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     }
 
     public static void UpdateColorTMP() {
-        // Update the text of the TextMeshPro component
-        colorTMP.text = RandomizeColor.randomizedColor;
+        colorTMP.text = GetPolishColor(RandomizeColor.randomizedColor);
         colorTMP.color = Color.white;
     }
 
+    public static string GetPolishColor(string engColor) {
+        switch (engColor) {
+            case "blue": return "Niebieski"; break;
+            case "green": return "Zielony"; break;
+            case "pink": return "Różowy"; break;
+            case "purple": return "Fioletowy"; break;
+            case "red": return "Czerwony"; break;
+            case "yellow": return "Żółty"; break;
+            default: return ""; break;
+        }
+    }
+
     static int countdownCounter = 2;
+
     private void Countdown() {
         if (countdownCounter == 2) {
             lightImage.sprite = redLight;
@@ -73,17 +87,17 @@ public class InGameCanvasBehaviour : MonoBehaviour {
             countdownText.text = "";
             Destroy(lightImage);
         }
-
     }
 
+    public static void ShowAGDCanvas() {
+        afterGameDecisionCanvas.enabled = true;
+    }
 
-    
     public static void ShowWinner(string winner, string loser) {
         answerCanvas.enabled = false;
         winnerText.text = "1. " + winner;
         winnerText.color = new Color(1.0f, 0.843f, 0.0f);
         loserText.text = "2. " + loser;
         loserText.color = new Color(0.753f, 0.753f, 0.753f);
-    }
-    
+    }   
 }

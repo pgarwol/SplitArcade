@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: d4afb50ba40614ae4832c11a9c174bb4
+  - enabled: 1
+    path: Assets/Scenes/SplitRaceBoats.unity
+    guid: 96e5cda4621b9fe478b54c00a23c0438
   m_configObjects: {}

@@ -116,5 +116,10 @@ public class GameBehaviour : MonoBehaviour {
         ResponseToCircleClick.rightSideCanvas.DestroyCandies();
 
         InGameCanvasBehaviour.ShowWinner(winner, loser);
+        InGameCanvasBehaviour.ShowAGDCanvas();
+    }
+
+    public static void PrepareGame() {
+
     }
 }
