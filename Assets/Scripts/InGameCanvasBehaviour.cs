@@ -26,7 +26,6 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     void Awake() {
         lightImage = GameObject.Find("TrafficLight").GetComponent<Image>();
         
-
         // Countdown
         colorTMP = GameObject.Find("Color").GetComponent<TextMeshProUGUI>();
         countdownText = GameObject.Find("CountdownText").GetComponent<TextMeshProUGUI>();
@@ -48,9 +47,6 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     }
 
     public static void UpdateColorTMP() {
-        // Update the text of the TextMeshPro component
-
-
         colorTMP.text = GetPolishColor(RandomizeColor.randomizedColor);
         colorTMP.color = Color.white;
     }
@@ -68,6 +64,7 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     }
 
     static int countdownCounter = 2;
+
     private void Countdown() {
         if (countdownCounter == 2) {
             lightImage.sprite = redLight;
@@ -102,6 +99,5 @@ public class InGameCanvasBehaviour : MonoBehaviour {
         winnerText.color = new Color(1.0f, 0.843f, 0.0f);
         loserText.text = "2. " + loser;
         loserText.color = new Color(0.753f, 0.753f, 0.753f);
-    }
-    
+    }   
 }

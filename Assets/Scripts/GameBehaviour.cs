@@ -118,4 +118,8 @@ public class GameBehaviour : MonoBehaviour {
         InGameCanvasBehaviour.ShowWinner(winner, loser);
         InGameCanvasBehaviour.ShowAGDCanvas();
     }
+
+    public static void PrepareGame() {
+
+    }
 }
