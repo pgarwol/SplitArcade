@@ -49,8 +49,22 @@ public class InGameCanvasBehaviour : MonoBehaviour {
 
     public static void UpdateColorTMP() {
         // Update the text of the TextMeshPro component
-        colorTMP.text = RandomizeColor.randomizedColor;
+
+
+        colorTMP.text = GetPolishColor(RandomizeColor.randomizedColor);
         colorTMP.color = Color.white;
+    }
+
+    public static string GetPolishColor(string engColor) {
+        switch (engColor) {
+            case "blue": return "Niebieski"; break;
+            case "green": return "Zielony"; break;
+            case "pink": return "Różowy"; break;
+            case "purple": return "Fioletowy"; break;
+            case "red": return "Czerwony"; break;
+            case "yellow": return "Żółty"; break;
+            default: return ""; break;
+        }
     }
 
     static int countdownCounter = 2;
