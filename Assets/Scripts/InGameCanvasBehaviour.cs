@@ -19,6 +19,7 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     public static Canvas gameResult;
     private static TextMeshProUGUI winnerText;
     private static TextMeshProUGUI loserText;
+    public static Canvas afterGameDecisionCanvas;
 
     private static Canvas answerCanvas;
 
@@ -38,6 +39,8 @@ public class InGameCanvasBehaviour : MonoBehaviour {
         winnerText = GameObject.Find("WinnerText").GetComponent<TextMeshProUGUI>();
         loserText = GameObject.Find("LoserText").GetComponent<TextMeshProUGUI>();
 
+        afterGameDecisionCanvas = GameObject.Find("AfterGameDecision").GetComponent<Canvas>();
+        afterGameDecisionCanvas.enabled = false;
     }
 
     void Start() {
@@ -73,11 +76,12 @@ public class InGameCanvasBehaviour : MonoBehaviour {
             countdownText.text = "";
             Destroy(lightImage);
         }
-
     }
 
+    public static void ShowAGDCanvas() {
+        afterGameDecisionCanvas.enabled = true;
+    }
 
-    
     public static void ShowWinner(string winner, string loser) {
         answerCanvas.enabled = false;
         winnerText.text = "1. " + winner;
