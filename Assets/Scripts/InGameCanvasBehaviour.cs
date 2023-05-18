@@ -48,18 +48,30 @@ public class InGameCanvasBehaviour : MonoBehaviour {
 
     public static void UpdateColorTMP() {
         colorTMP.text = GetPolishColor(RandomizeColor.randomizedColor);
-        colorTMP.color = Color.white;
+        colorTMP.color = GetColorEnum();
     }
 
     public static string GetPolishColor(string engColor) {
         switch (engColor) {
             case "blue": return "Niebieski"; break;
             case "green": return "Zielony"; break;
-            case "pink": return "Różowy"; break;
+            case "pink": return "Rozowy"; break; // Różowy
             case "purple": return "Fioletowy"; break;
             case "red": return "Czerwony"; break;
-            case "yellow": return "Żółty"; break;
+            case "yellow": return "Zolty"; break; // Żółty
             default: return ""; break;
+        }
+    }
+
+    private static Color GetColorEnum() {
+        switch (RandomizeColor.randomizedColor) {
+            case "blue": return Color.blue; break;
+            case "green": return Color.green; break;
+            case "pink": return new Color(1f, 0.5f, 0.5f); break; // Różowy
+            case "purple": return new Color(0.5f, 0f, 0.5f); break;
+            case "red": return Color.red; break;
+            case "yellow": return Color.yellow; break; // Żółty
+            default: return Color.white; break;
         }
     }
 

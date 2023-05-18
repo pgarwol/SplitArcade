@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
@@ -67,6 +68,9 @@ public class GameBehaviour : MonoBehaviour {
         spriteGO.transform.SetParent(transform);
 
         Image spriteImage = spriteGO.AddComponent<Image>();
+        SpriteRenderer spriteRenderer = spriteGO.AddComponent<SpriteRenderer>();
+        SortingGroup sortingGroup = spriteGO.AddComponent<SortingGroup>();
+        spriteRenderer.sortingLayerName = "Candies";
 
         if (!goodCircleTagged) {
             // Tag good Circle
@@ -77,8 +81,7 @@ public class GameBehaviour : MonoBehaviour {
             goodCircleTagged = true;
 
             // Puting good candy on front
-            SpriteRenderer spriteRenderer = spriteGO.AddComponent<SpriteRenderer>();
-            spriteRenderer.sortingOrder = 100;
+            spriteRenderer.sortingOrder = 20;
         } else {
             // Tag wrong Circle
             int randomIndex = Random.Range(0, circles.Count);
