@@ -43,3 +43,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Candies
+    uniqueID: 1495151985
+    locked: 0
