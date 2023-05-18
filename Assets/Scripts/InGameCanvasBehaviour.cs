@@ -55,10 +55,10 @@ public class InGameCanvasBehaviour : MonoBehaviour {
         switch (engColor) {
             case "blue": return "Niebieski"; break;
             case "green": return "Zielony"; break;
-            case "pink": return "Różowy"; break;
+            case "pink": return "Rozowy"; break; // Różowy
             case "purple": return "Fioletowy"; break;
             case "red": return "Czerwony"; break;
-            case "yellow": return "Żółty"; break;
+            case "yellow": return "Zolty"; break; // Żółty
             default: return ""; break;
         }
     }
