@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class GameBehaviour : MonoBehaviour {
     private float canvasWidth = 850f;
-    private float canvasHeight = 700f;
-    public float scale = 0.75f;
+    private float canvasHeight = 800f;
+    public float scale = 0.05f;
 
     public Sprite blueCirclePrefab;
     public Sprite greenCirclePrefab;
