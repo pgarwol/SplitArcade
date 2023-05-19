@@ -112,7 +112,6 @@ public class GameBehaviour : MonoBehaviour {
     void OnSpriteClicked(GameObject spriteGO) {
         spritesParentName = spriteGO.transform.parent.gameObject.name;
         ResponseToCircleClick.ResponseToClick(spritesParentName, spriteGO.tag);
-        Debug.Log("Siemanko");
         Destroy(spriteGO);
     }
 

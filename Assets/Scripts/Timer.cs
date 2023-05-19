@@ -19,19 +19,14 @@ public class Timer : MonoBehaviour {
     }
 
     public void StopMeasurement() {
-        if (isMeasuring)
-        {
+        if (isMeasuring) {
             float elapsedTime = Time.time - startTime;
-            Debug.Log("Elapsed time: " + elapsedTime + " seconds");
+            Debug.Log("Time: " + elapsedTime + " seconds");
            
             isMeasuring = false;
         }
     }
-
-    public void ShowTime() {
-        Debug.Log("Works");
-    }
-
+    
     public bool IsMeasuring() {
         return isMeasuring;
     }

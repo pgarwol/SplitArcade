@@ -9,10 +9,9 @@ public class SplitRaceMovement : MonoBehaviour {
     [SerializeField] private float transitionSpeed = 8f;
     [SerializeField] private AudioClip splashSound;
 
-    private Timer timer;
+    public Timer timer;
     void Start() {
         timer = new Timer();
-        timer.ShowTime();
     }
 
     private bool timeShown = false;

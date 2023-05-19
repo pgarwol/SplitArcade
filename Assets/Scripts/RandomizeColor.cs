@@ -23,7 +23,7 @@ public class RandomizeColor : MonoBehaviour {
         if (!randomized) {
             randomIndex = Random.Range(0, possibilities.Count);
             randomizedColor = possibilities[randomIndex];
-            Debug.Log("Randomized color: " + randomizedColor);
+            // Debug.Log("Randomized color: " + randomizedColor);
 
             correctColorIndex = possibilities.IndexOf(randomizedColor);
 

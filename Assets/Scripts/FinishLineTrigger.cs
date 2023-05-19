@@ -13,25 +13,43 @@ public class FinishLineTrigger : MonoBehaviour {
         rightPlayer = GameObject.Find("RightPlayer").GetComponent<SplitRaceMovement>();
     }
 
-
     private string whoWon;
     private string whoLost;
+    private static bool winnerNoticed = false;
     private void OnTriggerExit(Collider other) {
         whoWon = other.gameObject.name;
-        if (whoWon.Equals("LeftPlayer"))
+
+        if (winnerNoticed) {
+            if (whoLost.Equals("LeftPlayer")) {
+                leftPlayer.StopTheVehicleSLowly();
+                leftPlayer.timer.StopMeasurement();
+            } else if (whoLost.Equals("RightPlayer")) {
+                rightPlayer.StopTheVehicleSLowly();
+                rightPlayer.timer.StopMeasurement();
+            }      
+        }
+
+        if (whoWon.Equals("LeftPlayer") && !winnerNoticed) {
             whoLost = "RightPlayer";
-        else if (whoWon.Equals("RightPlayer"))
+            leftPlayer.StopTheVehicleSLowly();
+            leftPlayer.timer.StopMeasurement();
+        }
+        else if (whoWon.Equals("RightPlayer") && !winnerNoticed) {
             whoLost = "LeftPlayer";
+            rightPlayer.StopTheVehicleSLowly();
+            rightPlayer.timer.StopMeasurement();
+        }
 
-        Debug.Log(whoWon + " won!");
+        if (!winnerNoticed) {
+            Debug.Log(whoWon + " won!");
+            GameBehaviour.FinishGame(whoWon, whoLost);
+            winnerNoticed = true;
+        }
 
-        GameBehaviour.FinishGame(whoWon, whoLost);
-        leftPlayer.StopTheVehicleSLowly();
-        rightPlayer.StopTheVehicleSLowly();
-
-        Destroy(gameObject);
+        
     }
 
-    
-
+    public static bool IsWinnerNoticed() {
+        return winnerNoticed;
+    }
 }

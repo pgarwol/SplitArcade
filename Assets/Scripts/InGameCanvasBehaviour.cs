@@ -23,6 +23,8 @@ public class InGameCanvasBehaviour : MonoBehaviour {
 
     private static Canvas answerCanvas;
 
+    public static List<Color> colors;
+
     void Awake() {
         lightImage = GameObject.Find("TrafficLight").GetComponent<Image>();
         
@@ -40,6 +42,16 @@ public class InGameCanvasBehaviour : MonoBehaviour {
 
         afterGameDecisionCanvas = GameObject.Find("AfterGameDecision").GetComponent<Canvas>();
         afterGameDecisionCanvas.enabled = false;
+
+        colors = new List<Color> {
+            new Color(65f, 105f, 225f),
+            Color.blue,
+            Color.green,
+            new Color(255f, 105f, 180f),
+            new Color(0.5f, 0f, 0.5f),
+            Color.red,
+            Color.yellow
+        };
     }
 
     void Start() {
@@ -48,7 +60,7 @@ public class InGameCanvasBehaviour : MonoBehaviour {
 
     public static void UpdateColorTMP() {
         colorTMP.text = GetPolishColor(RandomizeColor.randomizedColor);
-        colorTMP.color = GetColorEnum();
+        colorTMP.color = GetRandomColor();
     }
 
     public static string GetPolishColor(string engColor) {
@@ -62,12 +74,16 @@ public class InGameCanvasBehaviour : MonoBehaviour {
             default: return ""; break;
         }
     }
+    
+    private static Color GetRandomColor() {
+        return colors[Random.Range(0, colors.Count)];
+    }
 
     private static Color GetColorEnum() {
         switch (RandomizeColor.randomizedColor) {
             case "blue": return Color.blue; break;
             case "green": return Color.green; break;
-            case "pink": return new Color(1f, 0.5f, 0.5f); break; // Różowy
+            case "pink": return new Color(255f, 105f, 180f); break; // Różowy
             case "purple": return new Color(0.5f, 0f, 0.5f); break;
             case "red": return Color.red; break;
             case "yellow": return Color.yellow; break; // Żółty

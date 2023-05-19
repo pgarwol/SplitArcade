@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class NewRound : MonoBehaviour {
@@ -23,18 +23,13 @@ public class NewRound : MonoBehaviour {
 
     void Update() {
         if (destroyedCandies) {
-            Debug.Log("pyk");
-
             destroyedCandies = false;
 
             gB1.goodCircleTagged = false;
             gB2.goodCircleTagged = false;
             
             gB1.InitializeRoundDelay();
-            gB2.InitializeRoundDelay();
-           
+            gB2.InitializeRoundDelay();    
         }
-    }
-
-    
+    }   
 }
