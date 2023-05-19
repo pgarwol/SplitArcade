@@ -16,12 +16,16 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     public static TextMeshProUGUI colorTMP;
     private static TextMeshProUGUI countdownText;
 
-    public static Canvas gameResult;
+    public static Canvas gameResultCanvas;
     private static TextMeshProUGUI winnerText;
     private static TextMeshProUGUI loserText;
+    private static TextMeshProUGUI winnerTime;
+    private static TextMeshProUGUI loserTime;
     public static Canvas afterGameDecisionCanvas;
 
     private static Canvas answerCanvas;
+
+    public static List<Color> colors;
 
     void Awake() {
         lightImage = GameObject.Find("TrafficLight").GetComponent<Image>();
@@ -34,12 +38,25 @@ public class InGameCanvasBehaviour : MonoBehaviour {
         answerCanvas = GameObject.Find("AnswerCanvas").GetComponent<Canvas>();
 
         // GameResult
-        gameResult = GameObject.Find("GameResult").GetComponent<Canvas>();
+        gameResultCanvas = GameObject.Find("GameResult").GetComponent<Canvas>();
         winnerText = GameObject.Find("WinnerText").GetComponent<TextMeshProUGUI>();
         loserText = GameObject.Find("LoserText").GetComponent<TextMeshProUGUI>();
+        winnerTime = GameObject.Find("WinnerTime").GetComponent<TextMeshProUGUI>();
+        loserTime = GameObject.Find("LoserTime").GetComponent<TextMeshProUGUI>();
 
         afterGameDecisionCanvas = GameObject.Find("AfterGameDecision").GetComponent<Canvas>();
         afterGameDecisionCanvas.enabled = false;
+        gameResultCanvas.enabled = false;
+
+        colors = new List<Color> {
+            new Color(65f, 105f, 225f),
+            Color.blue,
+            Color.green,
+            new Color(255f, 105f, 180f),
+            new Color(0.5f, 0f, 0.5f),
+            Color.red,
+            Color.yellow
+        };
     }
 
     void Start() {
@@ -48,7 +65,7 @@ public class InGameCanvasBehaviour : MonoBehaviour {
 
     public static void UpdateColorTMP() {
         colorTMP.text = GetPolishColor(RandomizeColor.randomizedColor);
-        colorTMP.color = GetColorEnum();
+        colorTMP.color = GetRandomColor();
     }
 
     public static string GetPolishColor(string engColor) {
@@ -62,17 +79,9 @@ public class InGameCanvasBehaviour : MonoBehaviour {
             default: return ""; break;
         }
     }
-
-    private static Color GetColorEnum() {
-        switch (RandomizeColor.randomizedColor) {
-            case "blue": return Color.blue; break;
-            case "green": return Color.green; break;
-            case "pink": return new Color(1f, 0.5f, 0.5f); break; // Różowy
-            case "purple": return new Color(0.5f, 0f, 0.5f); break;
-            case "red": return Color.red; break;
-            case "yellow": return Color.yellow; break; // Żółty
-            default: return Color.white; break;
-        }
+    
+    private static Color GetRandomColor() {
+        return colors[Random.Range(0, colors.Count)];
     }
 
     static int countdownCounter = 2;
@@ -107,9 +116,19 @@ public class InGameCanvasBehaviour : MonoBehaviour {
 
     public static void ShowWinner(string winner, string loser) {
         answerCanvas.enabled = false;
-        winnerText.text = "1. " + winner;
+        gameResultCanvas.enabled = true;
+        winnerText.text = winner;
         winnerText.color = new Color(1.0f, 0.843f, 0.0f);
-        loserText.text = "2. " + loser;
+        loserText.text = loser;
         loserText.color = new Color(0.753f, 0.753f, 0.753f);
-    }   
+    }
+
+    public static void SetWinnerTime(string raceTime) {
+        winnerTime.text = raceTime;
+        loserTime.text = "--.--";
+    }
+
+    public static void SetLoserTime(string raceTime) {
+        loserTime.text = raceTime ;
+    }
 }
