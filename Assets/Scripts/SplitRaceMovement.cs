@@ -8,11 +8,28 @@ public class SplitRaceMovement : MonoBehaviour {
     [SerializeField] public float speed = 100f;
     [SerializeField] private float transitionSpeed = 8f;
     [SerializeField] private AudioClip splashSound;
+
+    private Timer timer;
+    void Start() {
+        timer = new Timer();
+        timer.ShowTime();
+    }
+
+    private bool timeShown = false;
     private void FixedUpdate() {
         if (GameBehaviour.gameStarted) {
             Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
             Vector3 targetPosition = new Vector3(rb.position.x, rb.position.y, rb.position.z);
             rb.MovePosition(Vector3.MoveTowards(rb.position, targetPosition, transitionSpeed * Time.fixedDeltaTime) + forwardMove);  
+        }
+
+        if (!timer.IsMeasuring()) {
+            timer.StartMeasurement();
+        }
+
+        if (GameBehaviour.IsGameFinished() && !timeShown) {
+            timer.StopMeasurement();
+            timeShown = true;
         }
     }
 

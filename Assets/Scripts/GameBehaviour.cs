@@ -81,7 +81,7 @@ public class GameBehaviour : MonoBehaviour {
             goodCircleTagged = true;
 
             // Puting good candy on front
-            spriteRenderer.sortingOrder = 20;
+            spriteRenderer.sortingOrder = 0;
         } else {
             // Tag wrong Circle
             int randomIndex = Random.Range(0, circles.Count);
@@ -89,6 +89,8 @@ public class GameBehaviour : MonoBehaviour {
             circles.RemoveAt(randomIndex);
 
             spriteGO.tag = "Wrong";
+
+            spriteRenderer.sortingOrder = 1;
         }
 
         RectTransform rt = spriteGO.GetComponent<RectTransform>();
@@ -110,18 +112,24 @@ public class GameBehaviour : MonoBehaviour {
     void OnSpriteClicked(GameObject spriteGO) {
         spritesParentName = spriteGO.transform.parent.gameObject.name;
         ResponseToCircleClick.ResponseToClick(spritesParentName, spriteGO.tag);
-
+        Debug.Log("Siemanko");
         Destroy(spriteGO);
     }
 
+    public static bool gameFinished = false;
     public static void FinishGame(string winner, string loser) {
         ResponseToCircleClick.leftSideCanvas.DestroyCandies();
         ResponseToCircleClick.rightSideCanvas.DestroyCandies();
 
         InGameCanvasBehaviour.ShowWinner(winner, loser);
         InGameCanvasBehaviour.ShowAGDCanvas();
+
+        gameFinished = true;
     }
 
+    public static bool IsGameFinished() {
+        return gameFinished;
+    }
     public static void PrepareGame() {
 
     }
