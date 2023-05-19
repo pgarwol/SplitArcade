@@ -79,18 +79,6 @@ public class InGameCanvasBehaviour : MonoBehaviour {
         return colors[Random.Range(0, colors.Count)];
     }
 
-    private static Color GetColorEnum() {
-        switch (RandomizeColor.randomizedColor) {
-            case "blue": return Color.blue; break;
-            case "green": return Color.green; break;
-            case "pink": return new Color(255f, 105f, 180f); break; // Różowy
-            case "purple": return new Color(0.5f, 0f, 0.5f); break;
-            case "red": return Color.red; break;
-            case "yellow": return Color.yellow; break; // Żółty
-            default: return Color.white; break;
-        }
-    }
-
     static int countdownCounter = 2;
 
     private void Countdown() {

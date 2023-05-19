@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Timer : MonoBehaviour {
+public class RaceTimer : MonoBehaviour {
     private float startTime;
     private bool isMeasuring;
 
@@ -21,7 +21,7 @@ public class Timer : MonoBehaviour {
     public void StopMeasurement() {
         if (isMeasuring) {
             float elapsedTime = Time.time - startTime;
-            Debug.Log("Time: " + elapsedTime + " seconds");
+            Debug.Log("Time: " + elapsedTime + "s");
            
             isMeasuring = false;
         }

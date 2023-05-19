@@ -9,12 +9,15 @@ public class SplitRaceMovement : MonoBehaviour {
     [SerializeField] private float transitionSpeed = 8f;
     [SerializeField] private AudioClip splashSound;
 
-    public Timer timer;
+    private float startTime;
+    private float raceTime;
+    private bool timeMeasurementStarted = false;
+
+    public RaceTimer raceTimer;
     void Start() {
-        timer = new Timer();
+        
     }
 
-    private bool timeShown = false;
     private void FixedUpdate() {
         if (GameBehaviour.gameStarted) {
             Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
@@ -22,13 +25,9 @@ public class SplitRaceMovement : MonoBehaviour {
             rb.MovePosition(Vector3.MoveTowards(rb.position, targetPosition, transitionSpeed * Time.fixedDeltaTime) + forwardMove);  
         }
 
-        if (!timer.IsMeasuring()) {
-            timer.StartMeasurement();
-        }
-
-        if (GameBehaviour.IsGameFinished() && !timeShown) {
-            timer.StopMeasurement();
-            timeShown = true;
+        if (!timeMeasurementStarted) {
+            startTime = Time.time;
+            timeMeasurementStarted = true;
         }
     }
 
@@ -54,5 +53,9 @@ public class SplitRaceMovement : MonoBehaviour {
         }
     }
 
+    public void SetRaceTime() {
+        raceTime =  Time.time - startTime;
+        Debug.Log(gameObject.name + ": " + raceTime.ToString());
+    }
 
 }

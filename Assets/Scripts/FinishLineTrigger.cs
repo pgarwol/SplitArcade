@@ -22,22 +22,21 @@ public class FinishLineTrigger : MonoBehaviour {
         if (winnerNoticed) {
             if (whoLost.Equals("LeftPlayer")) {
                 leftPlayer.StopTheVehicleSLowly();
-                leftPlayer.timer.StopMeasurement();
+                leftPlayer.SetRaceTime();
             } else if (whoLost.Equals("RightPlayer")) {
                 rightPlayer.StopTheVehicleSLowly();
-                rightPlayer.timer.StopMeasurement();
-            }      
+                rightPlayer.SetRaceTime();
+            }
         }
 
         if (whoWon.Equals("LeftPlayer") && !winnerNoticed) {
             whoLost = "RightPlayer";
             leftPlayer.StopTheVehicleSLowly();
-            leftPlayer.timer.StopMeasurement();
-        }
-        else if (whoWon.Equals("RightPlayer") && !winnerNoticed) {
+            leftPlayer.SetRaceTime();
+        } else if (whoWon.Equals("RightPlayer") && !winnerNoticed) {
             whoLost = "LeftPlayer";
             rightPlayer.StopTheVehicleSLowly();
-            rightPlayer.timer.StopMeasurement();
+            rightPlayer.SetRaceTime();
         }
 
         if (!winnerNoticed) {
@@ -45,8 +44,6 @@ public class FinishLineTrigger : MonoBehaviour {
             GameBehaviour.FinishGame(whoWon, whoLost);
             winnerNoticed = true;
         }
-
-        
     }
 
     public static bool IsWinnerNoticed() {
