@@ -16,9 +16,11 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     public static TextMeshProUGUI colorTMP;
     private static TextMeshProUGUI countdownText;
 
-    public static Canvas gameResult;
+    public static Canvas gameResultCanvas;
     private static TextMeshProUGUI winnerText;
     private static TextMeshProUGUI loserText;
+    private static TextMeshProUGUI winnerTime;
+    private static TextMeshProUGUI loserTime;
     public static Canvas afterGameDecisionCanvas;
 
     private static Canvas answerCanvas;
@@ -36,12 +38,15 @@ public class InGameCanvasBehaviour : MonoBehaviour {
         answerCanvas = GameObject.Find("AnswerCanvas").GetComponent<Canvas>();
 
         // GameResult
-        gameResult = GameObject.Find("GameResult").GetComponent<Canvas>();
+        gameResultCanvas = GameObject.Find("GameResult").GetComponent<Canvas>();
         winnerText = GameObject.Find("WinnerText").GetComponent<TextMeshProUGUI>();
         loserText = GameObject.Find("LoserText").GetComponent<TextMeshProUGUI>();
+        winnerTime = GameObject.Find("WinnerTime").GetComponent<TextMeshProUGUI>();
+        loserTime = GameObject.Find("LoserTime").GetComponent<TextMeshProUGUI>();
 
         afterGameDecisionCanvas = GameObject.Find("AfterGameDecision").GetComponent<Canvas>();
         afterGameDecisionCanvas.enabled = false;
+        gameResultCanvas.enabled = false;
 
         colors = new List<Color> {
             new Color(65f, 105f, 225f),
@@ -111,9 +116,19 @@ public class InGameCanvasBehaviour : MonoBehaviour {
 
     public static void ShowWinner(string winner, string loser) {
         answerCanvas.enabled = false;
-        winnerText.text = "1. " + winner;
+        gameResultCanvas.enabled = true;
+        winnerText.text = winner;
         winnerText.color = new Color(1.0f, 0.843f, 0.0f);
-        loserText.text = "2. " + loser;
+        loserText.text = loser;
         loserText.color = new Color(0.753f, 0.753f, 0.753f);
-    }   
+    }
+
+    public static void SetWinnerTime(string raceTime) {
+        winnerTime.text = raceTime;
+        loserTime.text = "--.--";
+    }
+
+    public static void SetLoserTime(string raceTime) {
+        loserTime.text = raceTime ;
+    }
 }

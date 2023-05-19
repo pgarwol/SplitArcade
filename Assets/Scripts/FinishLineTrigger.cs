@@ -21,22 +21,23 @@ public class FinishLineTrigger : MonoBehaviour {
 
         if (winnerNoticed) {
             if (whoLost.Equals("LeftPlayer")) {
-                leftPlayer.StopTheVehicleSLowly();
-                leftPlayer.SetRaceTime();
+                leftPlayer.StopTheVehicleSlowly();
+                InGameCanvasBehaviour.SetLoserTime(leftPlayer.SetRaceTime());
             } else if (whoLost.Equals("RightPlayer")) {
-                rightPlayer.StopTheVehicleSLowly();
+                rightPlayer.StopTheVehicleSlowly();
                 rightPlayer.SetRaceTime();
+                InGameCanvasBehaviour.SetLoserTime(rightPlayer.SetRaceTime());
             }
         }
 
         if (whoWon.Equals("LeftPlayer") && !winnerNoticed) {
             whoLost = "RightPlayer";
-            leftPlayer.StopTheVehicleSLowly();
-            leftPlayer.SetRaceTime();
+            leftPlayer.StopTheVehicleSlowly();
+            InGameCanvasBehaviour.SetWinnerTime(leftPlayer.SetRaceTime());
         } else if (whoWon.Equals("RightPlayer") && !winnerNoticed) {
             whoLost = "LeftPlayer";
-            rightPlayer.StopTheVehicleSLowly();
-            rightPlayer.SetRaceTime();
+            rightPlayer.StopTheVehicleSlowly();
+            InGameCanvasBehaviour.SetWinnerTime(rightPlayer.SetRaceTime());
         }
 
         if (!winnerNoticed) {

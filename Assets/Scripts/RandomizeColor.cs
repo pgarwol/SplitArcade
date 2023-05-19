@@ -26,7 +26,6 @@ public class RandomizeColor : MonoBehaviour {
             // Debug.Log("Randomized color: " + randomizedColor);
 
             correctColorIndex = possibilities.IndexOf(randomizedColor);
-
             InGameCanvasBehaviour.UpdateColorTMP();
 
             randomized = true;

@@ -40,7 +40,7 @@ public class SplitRaceMovement : MonoBehaviour {
         speed /= 1.5f;
     }
 
-    public void StopTheVehicleSLowly() {
+    public void StopTheVehicleSlowly() {
         InvokeRepeating("Brake", 0f, 0.2f);
             
     }
@@ -53,9 +53,14 @@ public class SplitRaceMovement : MonoBehaviour {
         }
     }
 
-    public void SetRaceTime() {
-        raceTime =  Time.time - startTime;
-        Debug.Log(gameObject.name + ": " + raceTime.ToString());
+    public string SetRaceTime() {
+        raceTime = Time.time - startTime;
+        return raceTime.ToString();
+        //Debug.Log(gameObject.name + ": " + raceTime.ToString());
+    }
+
+    public string GetRaceTime() {
+        return raceTime.ToString();
     }
 
 }
