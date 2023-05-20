@@ -1,7 +1,9 @@
+using Random = UnityEngine.Random;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 using TMPro;
 
 
@@ -124,11 +126,40 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     }
 
     public static void SetWinnerTime(string raceTime) {
-        winnerTime.text = raceTime;
+        winnerTime.text = CreateTimerOutput(raceTime);
         loserTime.text = "--:--:--";
     }
 
     public static void SetLoserTime(string raceTime) {
-        loserTime.text = raceTime ;
+        loserTime.text = CreateTimerOutput(raceTime);
+    }
+
+    private static string CreateTimerOutput(string time) {
+        string seconds = CalculateTime(time)[0];
+        string minutes = CalculateTime(time)[1];
+        string miliseconds = time.Substring(time.IndexOf(",") + 1, 2);
+
+        return String.Format("{0}:{1}:{2}", minutes, seconds, miliseconds);
+    }
+
+    private static List<string> CalculateTime(string time) {
+        string seconds;
+        if (time.Substring(1, 1).Equals(","))
+            seconds = time.Substring(0, 1);
+        else
+            seconds = time.Substring(0, 2);
+
+        int secondsInteger = Int32.Parse(seconds);
+        int minutes = secondsInteger / 60;
+        if (secondsInteger > 60) {
+            secondsInteger -= 60;
+
+            if (secondsInteger < 10)
+                seconds = "0" + secondsInteger.ToString();
+            else secondsInteger.ToString();
+                seconds = secondsInteger.ToString();
+        }
+
+        return new List<string> { seconds, minutes.ToString() };
     }
 }

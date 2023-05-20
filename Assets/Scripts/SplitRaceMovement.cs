@@ -1,5 +1,6 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System;
 
 
 public class SplitRaceMovement : MonoBehaviour {
@@ -12,6 +13,7 @@ public class SplitRaceMovement : MonoBehaviour {
     [SerializeField] private AudioClip wrongSound;
     private float startTime;
     private float raceTime;
+
     private bool timeMeasurementStarted = false;
 
     public RaceTimer raceTimer;
@@ -63,7 +65,7 @@ public class SplitRaceMovement : MonoBehaviour {
     }
 
     public string SetRaceTime() {
-        raceTime = Time.realtimeSinceStartup - startTime;
+        raceTime = Time.realtimeSinceStartup - startTime - 3f;
         return raceTime.ToString();
         //Debug.Log(gameObject.name + ": " + raceTime.ToString());
     }

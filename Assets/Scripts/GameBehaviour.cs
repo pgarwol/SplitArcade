@@ -135,7 +135,4 @@ public class GameBehaviour : MonoBehaviour {
     public static bool IsGameFinished() {
         return gameFinished;
     }
-    public static void PrepareGame() {
-
-    }
 }
