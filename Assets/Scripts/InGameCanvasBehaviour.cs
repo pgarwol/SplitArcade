@@ -125,7 +125,7 @@ public class InGameCanvasBehaviour : MonoBehaviour {
 
     public static void SetWinnerTime(string raceTime) {
         winnerTime.text = raceTime;
-        loserTime.text = "--.--";
+        loserTime.text = "--:--:--";
     }
 
     public static void SetLoserTime(string raceTime) {

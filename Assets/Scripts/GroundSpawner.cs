@@ -9,7 +9,7 @@ public class GroundSpawner : MonoBehaviour {
     void Start() {
        for (int i = 1; i <= 3; i++) {
             SpawnTile();
-            if (i == 2)//2
+            if (i == 1)//2
                 groundTile = GameObject.Find("FINALRaceTrackSegment");
 
         }
