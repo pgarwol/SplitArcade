@@ -27,7 +27,7 @@ public class SplitRaceMovement : MonoBehaviour {
         }
 
         if (!timeMeasurementStarted) {
-            startTime = Time.time;
+            startTime = Time.realtimeSinceStartup;
             timeMeasurementStarted = true;
         }
     }
@@ -63,7 +63,7 @@ public class SplitRaceMovement : MonoBehaviour {
     }
 
     public string SetRaceTime() {
-        raceTime = Time.time - startTime;
+        raceTime = Time.realtimeSinceStartup - startTime;
         return raceTime.ToString();
         //Debug.Log(gameObject.name + ": " + raceTime.ToString());
     }
