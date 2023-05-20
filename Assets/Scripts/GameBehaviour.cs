@@ -23,8 +23,14 @@ public class GameBehaviour : MonoBehaviour {
     int amountOfCircles;
 
     public static bool gameStarted = false;
+    [SerializeField] private AudioClip gameMusic;
 
     bool roundIinitialized = false;
+
+    void Start () {
+        SoundSystemSingleton.Instance.PlayMusicSound(gameMusic);
+    }
+
     void Update() {
         // Debug.Log(gameStarted);
         if (gameStarted && !roundIinitialized) { 

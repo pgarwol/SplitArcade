@@ -8,7 +8,8 @@ public class SplitRaceMovement : MonoBehaviour {
     [SerializeField] public float speed = 100f;
     [SerializeField] private float transitionSpeed = 8f;
     [SerializeField] private AudioClip splashSound;
-
+    [SerializeField] private AudioClip boostSound;
+    [SerializeField] private AudioClip wrongSound;
     private float startTime;
     private float raceTime;
     private bool timeMeasurementStarted = false;
@@ -33,11 +34,19 @@ public class SplitRaceMovement : MonoBehaviour {
 
     public void IncreaseSpeed() {
         speed *= 1.3f;
+        SoundSystemSingleton.Instance.PlaySfxSound(boostSound);
+
+        Invoke("PlaySplashSound", 0.5f);
+    }
+
+    public void PlaySplashSound() {
         SoundSystemSingleton.Instance.PlaySfxSound(splashSound);
     }
 
     public void DecreaseSpeed() {
         speed /= 1.5f;
+
+        SoundSystemSingleton.Instance.PlaySfxSound(wrongSound);
     }
 
     public void StopTheVehicleSlowly() {

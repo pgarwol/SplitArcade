@@ -414,6 +414,8 @@ MonoBehaviour:
   speed: 4
   transitionSpeed: 10
   splashSound: {fileID: 8300000, guid: 27df09024a134394d91d42eb69088fab, type: 3}
+  boostSound: {fileID: 8300000, guid: 67cbdda88c02aed4b8fbddd65600aa20, type: 3}
+  wrongSound: {fileID: 8300000, guid: 39119c7f6149166478791e0a3bedc901, type: 3}
   raceTimer: {fileID: 0}
 --- !u!1 &61292789
 GameObject:
@@ -1461,6 +1463,8 @@ MonoBehaviour:
   speed: 4
   transitionSpeed: 10
   splashSound: {fileID: 8300000, guid: b97b455583d8c654a874dc3c6506a99d, type: 3}
+  boostSound: {fileID: 8300000, guid: 67cbdda88c02aed4b8fbddd65600aa20, type: 3}
+  wrongSound: {fileID: 8300000, guid: 39119c7f6149166478791e0a3bedc901, type: 3}
   raceTimer: {fileID: 0}
 --- !u!54 &346209761
 Rigidbody:
@@ -1699,8 +1703,8 @@ MonoBehaviour:
   redLight: {fileID: 21300000, guid: 362d1d56dbc24b14f956f0d36d810385, type: 3}
   greenLight: {fileID: 21300000, guid: 0561b11a5c0f4ed49a895a1e82ef01bb, type: 3}
   yellowLight: {fileID: 21300000, guid: 6b27eed9cde3615499b9f02b1d0b64d4, type: 3}
-  readySetSound: {fileID: 8300000, guid: 66896f0978215194ab699d447115ff84, type: 3}
-  goSound: {fileID: 8300000, guid: 66896f0978215194ab699d447115ff84, type: 3}
+  readySetSound: {fileID: 8300000, guid: 2e6793c33312e4e4c828452b126b530b, type: 3}
+  goSound: {fileID: 8300000, guid: 414c524f183eba74e92cf2445e803f77, type: 3}
 --- !u!114 &366520117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2957,7 +2961,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 50
@@ -3348,6 +3352,7 @@ MonoBehaviour:
   yellowCirclePrefab: {fileID: 21300000, guid: 8b80ff259edde0443bf6fd30f2204f7b, type: 3}
   circles: []
   goodCircleTagged: 0
+  gameMusic: {fileID: 8300000, guid: aff07b1e9489f43388b5344402878dbc, type: 3}
 --- !u!114 &870770229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3486,6 +3491,7 @@ MonoBehaviour:
   yellowCirclePrefab: {fileID: 21300000, guid: 8b80ff259edde0443bf6fd30f2204f7b, type: 3}
   circles: []
   goodCircleTagged: 0
+  gameMusic: {fileID: 8300000, guid: aff07b1e9489f43388b5344402878dbc, type: 3}
 --- !u!114 &876488013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8036,10 +8042,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
+  m_fontSize: 72
   m_fontSizeBase: 80
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
