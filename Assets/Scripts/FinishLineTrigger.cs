@@ -4,40 +4,40 @@ using UnityEngine;
 
 
 public class FinishLineTrigger : MonoBehaviour {
-    SplitRaceMovement leftPlayer;
-    SplitRaceMovement rightPlayer;
-    string buttonName;
+
+    private SplitRaceMovement leftPlayer;
+    private SplitRaceMovement rightPlayer;
+
+    private string buttonName;
+
+    private string whoWon;
+    private string whoLost;
+    private static bool winnerNoticed = false;
 
     void Awake() {
         leftPlayer = GameObject.Find("LeftPlayer").GetComponent<SplitRaceMovement>();
         rightPlayer = GameObject.Find("RightPlayer").GetComponent<SplitRaceMovement>();
     }
 
-    private string whoWon;
-    private string whoLost;
-    private static bool winnerNoticed = false;
     private void OnTriggerExit(Collider other) {
         whoWon = other.gameObject.name;
 
         if (winnerNoticed) {
             if (whoLost.Equals("LeftPlayer")) {
-                leftPlayer.StopTheVehicleSlowly();
-                InGameCanvasBehaviour.SetLoserTime(leftPlayer.SetRaceTime());
-            } else if (whoLost.Equals("RightPlayer")) {
-                rightPlayer.StopTheVehicleSlowly();
                 rightPlayer.SetRaceTime();
-                InGameCanvasBehaviour.SetLoserTime(rightPlayer.SetRaceTime());
+                SetLoserTimeAndSlowDown(leftPlayer);
+            } else if (whoLost.Equals("RightPlayer")) {
+                rightPlayer.SetRaceTime();
+                SetLoserTimeAndSlowDown(rightPlayer);
             }
         }
 
         if (whoWon.Equals("LeftPlayer") && !winnerNoticed) {
             whoLost = "RightPlayer";
-            leftPlayer.StopTheVehicleSlowly();
-            InGameCanvasBehaviour.SetWinnerTime(leftPlayer.SetRaceTime());
+            SetWinnerTimeAndSlowDown(leftPlayer);
         } else if (whoWon.Equals("RightPlayer") && !winnerNoticed) {
             whoLost = "LeftPlayer";
-            rightPlayer.StopTheVehicleSlowly();
-            InGameCanvasBehaviour.SetWinnerTime(rightPlayer.SetRaceTime());
+            SetWinnerTimeAndSlowDown(rightPlayer);
         }
 
         if (!winnerNoticed) {
@@ -49,5 +49,15 @@ public class FinishLineTrigger : MonoBehaviour {
 
     public static bool IsWinnerNoticed() {
         return winnerNoticed;
+    }
+
+    private void SetWinnerTimeAndSlowDown(SplitRaceMovement player) {
+        player.StopTheVehicleSlowly();
+        InGameCanvasBehaviour.SetWinnerTime(player.SetRaceTime());
+    }
+
+    private void SetLoserTimeAndSlowDown(SplitRaceMovement player) {
+        player.StopTheVehicleSlowly();
+        InGameCanvasBehaviour.SetLoserTime(player.SetRaceTime());
     }
 }

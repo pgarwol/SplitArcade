@@ -11,12 +11,11 @@ public class GroundSpawner : MonoBehaviour {
     void Start() {
        for (int i = 1; i <= raceTrackLength; i++) {
             SpawnTile();
-            if (i == raceTrackLength - 1)//2
+            if (i == raceTrackLength - 2)
                 groundTile = GameObject.Find("FINALRaceTrackSegment");
-
-        }
+       }
     }
-    //FINALRaceTrackSegment
+    
     public void SpawnTile() {
         GameObject temp = Instantiate(groundTile, nextSpawnPoint, Quaternion.identity);
         nextSpawnPoint = temp.transform.GetChild(0).transform.position;
