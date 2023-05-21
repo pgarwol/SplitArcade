@@ -1,53 +1,46 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
+using UnityEngine;
 
-public class SoundSystemSingleton : MonoBehaviour
-{
-    //Audio Sources
+
+public class SoundSystemSingleton : MonoBehaviour {
+    
     [SerializeField] private AudioSource musicSource, sfxSource, otherNoiseSource;
 
     public static SoundSystemSingleton Instance { get; private set; }
-    private void Awake()
-    {
+    
+    private void Awake() {
         // start of singleton pattern
-        if (Instance != null && Instance != this)
-        {
+        if (Instance != null && Instance != this) {
             Destroy(gameObject);
             return;
         }
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        // end of singleton pattern
     }
 
-    public void PlaySfxSound(AudioClip clip)
-    {
+    public void PlaySfxSound(AudioClip clip) {
         sfxSource.PlayOneShot(clip);
     }
 
-    public void PlayOtherSound(AudioClip clip)
-    {
+    public void PlayOtherSound(AudioClip clip) {
         otherNoiseSource.PlayOneShot(clip);
     }
 
-    public void PlayMusicSound(AudioClip clip)
-    {
+    public void PlayMusicSound(AudioClip clip) {
         musicSource.clip = clip;
         musicSource.mute = false;
         musicSource.loop = true;
         musicSource.Play();
     }
 
-    public void ChangeMusicPitch(float pitch)
-    {
+    public void ChangeMusicPitch(float pitch) {
         musicSource.pitch = pitch;
     }
 
-    public void StopTheMusic()
-    {
+    public void StopTheMusic() {
         musicSource.mute = true;
     }
 

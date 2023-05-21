@@ -4,32 +4,29 @@ using UnityEngine;
 
 
 public class RandomizeColor : MonoBehaviour {
-    private static string blue = "blue";
-    private static string green = "green";
-    private static string pink = "pink";
-    private static string purple = "purple";
-    private static string red = "red";
-    private static string yellow = "yellow";
 
-    private static List<string> possibilities = new List<string> { blue, green, pink, purple, red, yellow };
+    private static List<string> possibilities = new List<string> { "blue", "green", "pink", "purple", "red", "yellow" };
 
-    private static int randomIndex;
     public static string randomizedColor;
     public static int correctColorIndex;
+    private static int randomIndex;
 
-    public static bool randomized = false;
+    private static bool isRoundRandomized = false;
 
     public static void RndColor() {
-        if (!randomized) {
+        if (!isRoundRandomized) {
             randomIndex = Random.Range(0, possibilities.Count);
             randomizedColor = possibilities[randomIndex];
-            // Debug.Log("Randomized color: " + randomizedColor);
 
             correctColorIndex = possibilities.IndexOf(randomizedColor);
             InGameCanvasBehaviour.UpdateColorTMP();
 
-            randomized = true;
+            isRoundRandomized = true;
         }
+    }
+
+    public static void SetIsRoundRandomizedToFalse() {
+        isRoundRandomized = false;
     }
 
     public static int GetCorrectColorIndex() {

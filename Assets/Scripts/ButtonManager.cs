@@ -1,7 +1,7 @@
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour {
     // <<< MENU SCENE >>>
@@ -12,7 +12,7 @@ public class ButtonManager : MonoBehaviour {
 
     // <<< BOAT GAME SCENE >>>
     public void RestartBoatGame() {
-        
+        // TODO
     }
     
     public void GoToMenu() {

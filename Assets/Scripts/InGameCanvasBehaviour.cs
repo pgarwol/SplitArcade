@@ -8,24 +8,26 @@ using TMPro;
 
 
 public class InGameCanvasBehaviour : MonoBehaviour {
-    public Sprite redLight;
-    public Sprite greenLight;
-    public Sprite yellowLight;
+
+    [SerializeField] private Sprite redLight;
+    [SerializeField] private Sprite greenLight;
+    [SerializeField] private Sprite yellowLight;
     private Image lightImage;
 
     [SerializeField] private AudioClip readySetSound;
     [SerializeField] private AudioClip goSound;
-    public static TextMeshProUGUI colorTMP;
+
+    private static TextMeshProUGUI colorTMP;
     private static TextMeshProUGUI countdownText;
 
-    public static Canvas gameResultCanvas;
+    private static Canvas answerCanvas;
+    private static Canvas gameResultCanvas;
+    private static Canvas afterGameDecisionCanvas;
+
     private static TextMeshProUGUI winnerText;
     private static TextMeshProUGUI loserText;
     private static TextMeshProUGUI winnerTime;
     private static TextMeshProUGUI loserTime;
-    public static Canvas afterGameDecisionCanvas;
-
-    private static Canvas answerCanvas;
 
     public static List<Color> colors;
 
@@ -65,28 +67,34 @@ public class InGameCanvasBehaviour : MonoBehaviour {
         InvokeRepeating("Countdown", 0f, 1.5f);
     }
 
+    // <<< COLORS >>>
     public static void UpdateColorTMP() {
         colorTMP.text = GetPolishColor(RandomizeColor.randomizedColor);
         colorTMP.color = GetRandomColor();
-    }
-
-    public static string GetPolishColor(string engColor) {
-        switch (engColor) {
-            case "blue": return "Niebieski"; break;
-            case "green": return "Zielony"; break;
-            case "pink": return "Rozowy"; break; // Różowy
-            case "purple": return "Fioletowy"; break;
-            case "red": return "Czerwony"; break;
-            case "yellow": return "Zolty"; break; // Żółty
-            default: return ""; break;
-        }
     }
     
     private static Color GetRandomColor() {
         return colors[Random.Range(0, colors.Count)];
     }
 
-    static int countdownCounter = 2;
+    public static string GetPolishColor(string engColor) {
+        switch (engColor) {
+            case "blue": return "Niebieski";
+            case "green": return "Zielony";
+            case "pink": return "Rozowy"; // Różowy
+            case "purple": return "Fioletowy";
+            case "red": return "Czerwony";
+            case "yellow": return "Zolty"; // Żółty
+            default: return "";
+        }
+    }
+
+    public static void SetColorTMP(string s) {
+        colorTMP.text = s;
+    }
+
+    // <<< COUNTDOWN >>>
+    private static int countdownCounter = 2;
 
     private void Countdown() {
         if (countdownCounter == 2) {
@@ -103,7 +111,7 @@ public class InGameCanvasBehaviour : MonoBehaviour {
             countdownText.color = Color.green;
             lightImage.sprite = greenLight;
             countdownText.text = "Go!";
-            GameBehaviour.gameStarted = true;
+            GameBehaviour.SetIsGameStartedTrue();
             countdownCounter--;
             SoundSystemSingleton.Instance.PlaySfxSound(goSound);
         } else {
@@ -112,6 +120,7 @@ public class InGameCanvasBehaviour : MonoBehaviour {
         }
     }
 
+    // <<< SOMEONE WON: >>>
     public static void ShowAGDCanvas() {
         afterGameDecisionCanvas.enabled = true;
     }

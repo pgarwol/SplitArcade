@@ -4,44 +4,44 @@ using System;
 
 
 public class SplitRaceMovement : MonoBehaviour {
+    
     public Rigidbody rb;
 
-    [SerializeField] public float speed = 100f;
     [SerializeField] private float transitionSpeed = 8f;
+    [SerializeField] public float speed = 100f;
+
     [SerializeField] private AudioClip splashSound;
     [SerializeField] private AudioClip boostSound;
     [SerializeField] private AudioClip wrongSound;
+    
+    private bool timeMeasurementStarted = false;
     private float startTime;
     private float raceTime;
 
-    private bool timeMeasurementStarted = false;
-
-    public RaceTimer raceTimer;
-    void Start() {
-        
-    }
-
     private void FixedUpdate() {
-        if (GameBehaviour.gameStarted) {
+        // Movement
+        if (GameBehaviour.IsGameStarted()) {
             Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
             Vector3 targetPosition = new Vector3(rb.position.x, rb.position.y, rb.position.z);
             rb.MovePosition(Vector3.MoveTowards(rb.position, targetPosition, transitionSpeed * Time.fixedDeltaTime) + forwardMove);  
         }
 
+        // Stopwatch start
         if (!timeMeasurementStarted) {
             startTime = Time.realtimeSinceStartup;
             timeMeasurementStarted = true;
         }
     }
 
+    // <<< MOVEMENT >>>
     public void IncreaseSpeed() {
         speed *= 1.3f;
+        
         SoundSystemSingleton.Instance.PlaySfxSound(boostSound);
-
         Invoke("PlaySplashSound", 0.5f);
     }
-
-    public void PlaySplashSound() {
+    
+    private void PlaySplashSound() {
         SoundSystemSingleton.Instance.PlaySfxSound(splashSound);
     }
 
@@ -52,8 +52,7 @@ public class SplitRaceMovement : MonoBehaviour {
     }
 
     public void StopTheVehicleSlowly() {
-        InvokeRepeating("Brake", 0f, 0.2f);
-            
+        InvokeRepeating("Brake", 0f, 0.2f);         
     }
 
     private void Brake() {
@@ -64,6 +63,7 @@ public class SplitRaceMovement : MonoBehaviour {
         }
     }
 
+    // <<< STOPWATCH >>>
     public string SetRaceTime() {
         raceTime = Time.realtimeSinceStartup - startTime - 3f;
         return raceTime.ToString();

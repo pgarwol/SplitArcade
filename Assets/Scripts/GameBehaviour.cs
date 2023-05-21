@@ -7,35 +7,35 @@ using UnityEngine;
 
 
 public class GameBehaviour : MonoBehaviour {
+
     private float canvasWidth = 850f;
     private float canvasHeight = 800f;
-    public float scale = 0.05f;
+    [SerializeField] private float scale = 0.05f;
 
-    public Sprite blueCirclePrefab;
-    public Sprite greenCirclePrefab;
-    public Sprite pinkCirclePrefab;
-    public Sprite purpleCirclePrefab;
-    public Sprite redCirclePrefab;
-    public Sprite yellowCirclePrefab;
+    [SerializeField] private Sprite blueCirclePrefab;
+    [SerializeField] private Sprite greenCirclePrefab;
+    [SerializeField] private Sprite pinkCirclePrefab;
+    [SerializeField] private Sprite purpleCirclePrefab;
+    [SerializeField] private Sprite redCirclePrefab;
+    [SerializeField] private Sprite yellowCirclePrefab;
 
-    public List<Sprite> circles;
-    public bool goodCircleTagged = false;
-    int amountOfCircles;
+    private bool goodCandyTagged = false;
+    private List<Sprite> candies;
+    private int amountOfCandies;
 
-    public static bool gameStarted = false;
     [SerializeField] private AudioClip gameMusic;
+    private static bool gameStarted = false;
 
-    bool roundIinitialized = false;
+    bool isRoundInitialized = false;
 
     void Start () {
         SoundSystemSingleton.Instance.PlayMusicSound(gameMusic);
     }
 
     void Update() {
-        // Debug.Log(gameStarted);
-        if (gameStarted && !roundIinitialized) { 
+        if (gameStarted && !isRoundInitialized) { 
             InitializeRoundDelay();
-            roundIinitialized = true;
+            isRoundInitialized = true;
         }
     }
     
@@ -50,7 +50,7 @@ public class GameBehaviour : MonoBehaviour {
     }
 
     public void InitializePossibilitiesList() {
-        circles = new List<Sprite> {
+        candies = new List<Sprite> {
             blueCirclePrefab,
             greenCirclePrefab,
             pinkCirclePrefab,
@@ -59,53 +59,55 @@ public class GameBehaviour : MonoBehaviour {
             yellowCirclePrefab
         };
 
-        amountOfCircles = circles.Count;
+        amountOfCandies = candies.Count;
     }
 
     public void StartNextRound() {
-        for (int i = 0; i < amountOfCircles; i++) {
+        for (int i = 0; i < amountOfCandies; i++)
             SpawnSprite();
-        }
     }
 
     void SpawnSprite() {
         // Spawning Circle
         GameObject spriteGO = new GameObject("Sprite");
         spriteGO.transform.SetParent(transform);
-
         Image spriteImage = spriteGO.AddComponent<Image>();
+
+        // Adding layer sorting possibility
         SpriteRenderer spriteRenderer = spriteGO.AddComponent<SpriteRenderer>();
         SortingGroup sortingGroup = spriteGO.AddComponent<SortingGroup>();
         spriteRenderer.sortingLayerName = "Candies";
 
-        if (!goodCircleTagged) {
-            // Tag good Circle
-            spriteImage.sprite = circles[RandomizeColor.GetCorrectColorIndex()];
-            circles.RemoveAt(RandomizeColor.correctColorIndex);
+        if (!goodCandyTagged) {
+            // Tag good Candy
+            spriteImage.sprite = candies[RandomizeColor.GetCorrectColorIndex()];
+            candies.RemoveAt(RandomizeColor.correctColorIndex);
 
             spriteGO.tag = "Good";
-            goodCircleTagged = true;
+            goodCandyTagged = true;
 
             // Puting good candy on front
-            spriteRenderer.sortingOrder = 0;
+            spriteRenderer.sortingOrder = 1;
         } else {
-            // Tag wrong Circle
-            int randomIndex = Random.Range(0, circles.Count);
-            spriteImage.sprite = circles[randomIndex];
-            circles.RemoveAt(randomIndex);
+            // Tag wrong Candy
+            int randomIndex = Random.Range(0, candies.Count);
+            spriteImage.sprite = candies[randomIndex];
+            candies.RemoveAt(randomIndex);
 
             spriteGO.tag = "Wrong";
 
-            spriteRenderer.sortingOrder = 1;
+            // Puting wrong candy on back
+            spriteRenderer.sortingOrder = 0;
         }
 
+        // Randomizing Candy position on screen
         RectTransform rt = spriteGO.GetComponent<RectTransform>();
         rt.anchoredPosition = new Vector2(Random.Range(-canvasWidth / 2f, canvasWidth / 2f),
                                           Random.Range(-canvasHeight / 2f, canvasHeight / 2f));
         rt.localScale = new Vector2(scale, scale);
         rt.rotation = Quaternion.Euler(0f, 0f, Random.Range(0, 360f));
 
-        // Interacting with spawned Circle
+        // Interacting with spawned Candy
         EventTrigger trigger = spriteGO.AddComponent<EventTrigger>();
         EventTrigger.Entry clickEntry = new EventTrigger.Entry();
         clickEntry.eventID = EventTriggerType.PointerClick;
@@ -113,7 +115,7 @@ public class GameBehaviour : MonoBehaviour {
         trigger.triggers.Add(clickEntry);
     }
 
-    string spritesParentName;
+    private string spritesParentName;
 
     void OnSpriteClicked(GameObject spriteGO) {
         spritesParentName = spriteGO.transform.parent.gameObject.name;
@@ -121,7 +123,8 @@ public class GameBehaviour : MonoBehaviour {
         Destroy(spriteGO);
     }
 
-    public static bool gameFinished = false;
+    private static bool gameFinished = false;
+
     public static void FinishGame(string winner, string loser) {
         ResponseToCircleClick.leftSideCanvas.DestroyCandies();
         ResponseToCircleClick.rightSideCanvas.DestroyCandies();
@@ -134,5 +137,17 @@ public class GameBehaviour : MonoBehaviour {
 
     public static bool IsGameFinished() {
         return gameFinished;
+    }
+
+    public void SetGoodCandyTaggedFalse() {
+        goodCandyTagged = false;
+    }
+
+    public static bool IsGameStarted() {
+        return gameStarted;
+    }
+
+    public static void SetIsGameStartedTrue() {
+        gameStarted = true;
     }
 }
