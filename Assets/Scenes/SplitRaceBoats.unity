@@ -264,9 +264,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Quit
-
-'
+  m_text: Wyjdz z gry
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5f8925f556676f43b7820824fefa889, type: 2}
   m_sharedMaterial: {fileID: 7537997882726573642, guid: f5f8925f556676f43b7820824fefa889, type: 2}
@@ -1315,8 +1313,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 110
-  m_fontSizeBase: 110
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2920,7 +2918,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Back to menu
+  m_text: Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5f8925f556676f43b7820824fefa889, type: 2}
   m_sharedMaterial: {fileID: 7537997882726573642, guid: f5f8925f556676f43b7820824fefa889, type: 2}
@@ -10244,7 +10242,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play again
+  m_text: Graj ponownie
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5f8925f556676f43b7820824fefa889, type: 2}
   m_sharedMaterial: {fileID: 7537997882726573642, guid: f5f8925f556676f43b7820824fefa889, type: 2}

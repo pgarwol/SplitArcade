@@ -73,8 +73,8 @@ public class InGameCanvasBehaviour : MonoBehaviour {
 
     // <<< COLORS >>>
     public static void UpdateColorTMP() {
-        colorTMP.text = RandomizeColor.randomizedColor;
-        //colorTMP.text = GetPolishColor(RandomizeColor.randomizedColor);
+        //colorTMP.text = RandomizeColor.randomizedColor;
+        colorTMP.text = GetPolishColor(RandomizeColor.randomizedColor);
         colorTMP.color = GetRandomColor();
     }
     
@@ -116,7 +116,7 @@ public class InGameCanvasBehaviour : MonoBehaviour {
         else if (countdownCounter == 0) {
             countdownText.color = Color.green;
             lightImage.sprite = greenLight;
-            countdownText.text = "Go!";
+            countdownText.text = "Jazda!";
             GameBehaviour.SetIsGameStartedTrue();
             countdownCounter--;
             SoundSystemSingleton.Instance.PlaySfxSound(goSound);
