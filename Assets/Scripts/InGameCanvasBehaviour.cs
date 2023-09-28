@@ -33,7 +33,7 @@ public class InGameCanvasBehaviour : MonoBehaviour {
 
     void Awake() {
         lightImage = GameObject.Find("TrafficLight").GetComponent<Image>();
-        
+
         // Countdown
         colorTMP = GameObject.Find("Color").GetComponent<TextMeshProUGUI>();
         countdownText = GameObject.Find("CountdownText").GetComponent<TextMeshProUGUI>();
@@ -51,6 +51,7 @@ public class InGameCanvasBehaviour : MonoBehaviour {
         afterGameDecisionCanvas = GameObject.Find("AfterGameDecision").GetComponent<Canvas>();
         afterGameDecisionCanvas.enabled = false;
         gameResultCanvas.enabled = false;
+        lightImage.enabled = true;
 
         colors = new List<Color> {
             new Color(65f, 105f, 225f),
@@ -61,6 +62,9 @@ public class InGameCanvasBehaviour : MonoBehaviour {
             Color.red,
             Color.yellow
         };
+        
+        countdownCounter = 2;
+        GameBehaviour.SetIsGameStartedFalse();
     }
 
     void Start() {
@@ -69,7 +73,8 @@ public class InGameCanvasBehaviour : MonoBehaviour {
 
     // <<< COLORS >>>
     public static void UpdateColorTMP() {
-        colorTMP.text = GetPolishColor(RandomizeColor.randomizedColor);
+        colorTMP.text = RandomizeColor.randomizedColor;
+        //colorTMP.text = GetPolishColor(RandomizeColor.randomizedColor);
         colorTMP.color = GetRandomColor();
     }
     
@@ -94,9 +99,10 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     }
 
     // <<< COUNTDOWN >>>
-    private static int countdownCounter = 2;
+    private static int countdownCounter;
 
     private void Countdown() {
+        Debug.Log(String.Format("<color=#08a4d4> Odliczanie: {0} </color>", countdownCounter));
         if (countdownCounter == 2) {
             lightImage.sprite = redLight;
             countdownCounter--;
@@ -116,7 +122,9 @@ public class InGameCanvasBehaviour : MonoBehaviour {
             SoundSystemSingleton.Instance.PlaySfxSound(goSound);
         } else {
             countdownText.text = "";
-            Destroy(lightImage);
+            lightImage.enabled = false;
+            CancelInvoke();
+            //Destroy(lightImage);
         }
     }
 

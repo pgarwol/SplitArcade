@@ -11,7 +11,11 @@ public class RandomizeColor : MonoBehaviour {
     public static int correctColorIndex;
     private static int randomIndex;
 
-    private static bool isRoundRandomized = false;
+    private static bool isRoundRandomized;
+
+    void Start() {
+        isRoundRandomized = false;
+    }
 
     public static void RndColor() {
         if (!isRoundRandomized) {
