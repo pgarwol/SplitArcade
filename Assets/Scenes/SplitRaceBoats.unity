@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5619456, g: 0.7221119, b: 0.81800896, a: 1}
+  m_IndirectSpecularColor: {r: 0.56184906, g: 0.72206545, b: 0.81800187, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -264,9 +264,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Wyjdz z gry
-
-'
+  m_text: Wyjdz z gry
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5f8925f556676f43b7820824fefa889, type: 2}
   m_sharedMaterial: {fileID: 7537997882726573642, guid: f5f8925f556676f43b7820824fefa889, type: 2}
@@ -1315,8 +1313,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 110
-  m_fontSizeBase: 110
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2920,7 +2918,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wyjdz do menu
+  m_text: Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5f8925f556676f43b7820824fefa889, type: 2}
   m_sharedMaterial: {fileID: 7537997882726573642, guid: f5f8925f556676f43b7820824fefa889, type: 2}
@@ -3055,7 +3053,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Co dalej?
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5f8925f556676f43b7820824fefa889, type: 2}
   m_sharedMaterial: {fileID: 7537997882726573642, guid: f5f8925f556676f43b7820824fefa889, type: 2}
@@ -3469,7 +3467,7 @@ RectTransform:
   - {fileID: 62145462}
   - {fileID: 739433009}
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5821,7 +5819,7 @@ Transform:
   - {fileID: 638713578}
   - {fileID: 1013933428}
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &860640320 stripped
 Transform:
@@ -12242,7 +12240,7 @@ Transform:
   - {fileID: 1718303676}
   - {fileID: 1020554240}
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1946206073 stripped
 Transform:
@@ -12882,7 +12880,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2027015229
 GameObject:

@@ -13,6 +13,9 @@ public class ButtonManager : MonoBehaviour {
     // <<< BOAT GAME SCENE >>>
     public void RestartBoatGame() {
         // TODO
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+        //InGameCanvasBehaviour.SetUp();
     }
     
     public void GoToMenu() {

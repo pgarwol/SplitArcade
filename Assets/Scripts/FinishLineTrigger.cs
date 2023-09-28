@@ -12,11 +12,13 @@ public class FinishLineTrigger : MonoBehaviour {
 
     private string whoWon;
     private string whoLost;
-    private static bool winnerNoticed = false;
+    private static bool winnerNoticed;
 
     void Awake() {
         leftPlayer = GameObject.Find("LeftPlayer").GetComponent<SplitRaceMovement>();
         rightPlayer = GameObject.Find("RightPlayer").GetComponent<SplitRaceMovement>();
+
+        winnerNoticed = false;
     }
 
     private void OnTriggerExit(Collider other) {
