@@ -37,7 +37,6 @@ public class GameBehaviour : MonoBehaviour {
         if (gameStarted && !isRoundInitialized) { 
             InitializeRoundDelay();
             isRoundInitialized = true;
-            Debug.Log("<color=#03fc1c> ROUND INITIALIZED </color>");
         }
     }
     

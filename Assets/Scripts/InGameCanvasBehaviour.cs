@@ -102,7 +102,6 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     private static int countdownCounter;
 
     private void Countdown() {
-        Debug.Log(String.Format("<color=#08a4d4> Odliczanie: {0} </color>", countdownCounter));
         if (countdownCounter == 2) {
             lightImage.sprite = redLight;
             countdownCounter--;
