@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Good
   - Wrong
+  - Button
+  - LeftPlayer
+  - RightPlayer
   layers:
   - Default
   - TransparentFX
