@@ -9,6 +9,9 @@ using TMPro;
 
 public class InGameCanvasBehaviour : MonoBehaviour {
 
+    GameObject leftReadyButton;
+    GameObject rightReadyButton;
+
     [SerializeField] private Sprite redLight;
     [SerializeField] private Sprite greenLight;
     [SerializeField] private Sprite yellowLight;
@@ -20,6 +23,8 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     private static TextMeshProUGUI colorTMP;
     private static TextMeshProUGUI countdownText;
 
+    private static Canvas chooseColorCanvas;
+    private static Canvas countdownCanvas;
     private static Canvas answerCanvas;
     private static Canvas gameResultCanvas;
     private static Canvas afterGameDecisionCanvas;
@@ -32,9 +37,15 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     public static List<Color> colors;
 
     void Awake() {
-        lightImage = GameObject.Find("TrafficLight").GetComponent<Image>();
+        // Color pick
+        chooseColorCanvas = GameObject.Find("ChooseColorCanvas").GetComponent<Canvas>();
+        leftReadyButton = GameObject.Find("LeftReadyButton");
+        rightReadyButton = GameObject.Find("RightReadyButton");
 
         // Countdown
+        lightImage = GameObject.Find("TrafficLight").GetComponent<Image>();
+        countdownCanvas = GameObject.Find("Countdown").GetComponent<Canvas>();
+        countdownCanvas.enabled = false;
         colorTMP = GameObject.Find("Color").GetComponent<TextMeshProUGUI>();
         countdownText = GameObject.Find("CountdownText").GetComponent<TextMeshProUGUI>();
 
@@ -68,7 +79,91 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     }
 
     void Start() {
+        playersReady = false;
+    }
+
+    private void DisableChooseColorCanvas() {
+        chooseColorCanvas.enabled = false;
+        StartGame();
+    }
+
+    private void StartGame() {
+        playersReady = false;
+        countdownCanvas.enabled = true;
         InvokeRepeating("Countdown", 0f, 1.5f);
+    }
+
+
+    // -----[Players ready?]-----
+
+    private bool leftPlayerReady;
+    private bool rightPlayerReady;
+    private bool playersReady;
+
+    // LEFT
+
+    public void LeftPlayerReadySetter() {
+        if (leftPlayerReady) {
+            SetLeftPlayerNotReady();
+        }
+        else {
+            SetLeftPlayerReady();
+        }  
+    }
+
+    public void SetLeftPlayerNotReady() {
+        leftPlayerReady = false;
+
+        // Change button looks
+        leftReadyButton.GetComponentInChildren<TextMeshProUGUI>().text = "Niegotowy";
+        leftReadyButton.GetComponent<Image>().color = Color.red;//new Color(255, 97, 97);
+    }
+
+    public void SetLeftPlayerReady() {
+        leftPlayerReady = true;
+        CheckIfPlayersReady();
+
+        // Change button looks
+        leftReadyButton.GetComponentInChildren<TextMeshProUGUI>().text = "Gotowy";
+        leftReadyButton.GetComponent<Image>().color = Color.green;// new Color(84, 238, 55);
+    }
+
+    // RIGHT
+
+    public void RightPlayerReadySetter() {
+        if (rightPlayerReady) {
+            SetRightlayerNotReady();
+        }
+        else {
+            SetRightlayerReady();
+        }
+    }
+
+    public void SetRightlayerNotReady() {
+        rightPlayerReady = false;
+
+        // Change button looks
+        rightReadyButton.GetComponentInChildren<TextMeshProUGUI>().text = "Niegotowy";
+        rightReadyButton.GetComponent<Image>().color = Color.red;// new Color(255, 97, 97);
+    }
+
+    public void SetRightlayerReady() {
+        rightPlayerReady = true;
+        CheckIfPlayersReady();
+
+        // Change button looks
+        rightReadyButton.GetComponentInChildren<TextMeshProUGUI>().text = "Gotowy";
+        rightReadyButton.GetComponent<Image>().color = Color.green;// new Color(84, 238, 55);
+    }
+
+
+    private void CheckIfPlayersReady() {
+        if (leftPlayerReady && rightPlayerReady) {
+            Debug.Log("<color=#5af542><b> Both players ready </b></color>");
+            leftReadyButton.GetComponent<Button>().enabled = false;
+            rightReadyButton.GetComponent<Button>().enabled = false;
+            Invoke("DisableChooseColorCanvas", 2f);
+        }
     }
 
     // <<< COLORS >>>
