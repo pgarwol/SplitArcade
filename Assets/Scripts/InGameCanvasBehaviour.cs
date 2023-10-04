@@ -20,7 +20,9 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     [SerializeField] private AudioClip readySetSound;
     [SerializeField] private AudioClip goSound;
 
-    private static TextMeshProUGUI colorTMP;
+    private static TextMeshProUGUI leftColorTMP;
+    private static TextMeshProUGUI rightColorTMP;
+    
     private static TextMeshProUGUI countdownText;
 
     private static Canvas chooseColorCanvas;
@@ -46,7 +48,8 @@ public class InGameCanvasBehaviour : MonoBehaviour {
         lightImage = GameObject.Find("TrafficLight").GetComponent<Image>();
         countdownCanvas = GameObject.Find("Countdown").GetComponent<Canvas>();
         countdownCanvas.enabled = false;
-        colorTMP = GameObject.Find("Color").GetComponent<TextMeshProUGUI>();
+        leftColorTMP = GameObject.Find("LeftColor").GetComponent<TextMeshProUGUI>();
+        rightColorTMP = GameObject.Find("RightColor").GetComponent<TextMeshProUGUI>();
         countdownText = GameObject.Find("CountdownText").GetComponent<TextMeshProUGUI>();
 
         // Answers for both players
@@ -169,8 +172,10 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     // <<< COLORS >>>
     public static void UpdateColorTMP() {
         //colorTMP.text = RandomizeColor.randomizedColor;
-        colorTMP.text = GetPolishColor(RandomizeColor.randomizedColor);
-        colorTMP.color = GetRandomColor();
+        leftColorTMP.text = GetPolishColor(RandomizeColor.randomizedColor);
+        rightColorTMP.text = GetPolishColor(RandomizeColor.randomizedColor);
+        leftColorTMP.color = GetRandomColor();
+        rightColorTMP.color = GetRandomColor();
     }
     
     private static Color GetRandomColor() {
@@ -190,7 +195,8 @@ public class InGameCanvasBehaviour : MonoBehaviour {
     }
 
     public static void SetColorTMP(string s) {
-        colorTMP.text = s;
+        leftColorTMP.text = s;
+        rightColorTMP.text = s;
     }
 
     // <<< COUNTDOWN >>>
