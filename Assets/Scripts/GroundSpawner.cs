@@ -6,7 +6,7 @@ public class GroundSpawner : MonoBehaviour {
     public GameObject groundTile;
     Vector3 nextSpawnPoint = new Vector3(0, 0, 0.98f);
 
-    int raceTrackLength = 3; // default: 3
+    int raceTrackLength = 4; // default: 3
 
     void Start() {
        for (int i = 1; i <= raceTrackLength; i++) {

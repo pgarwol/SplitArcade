@@ -19,7 +19,7 @@ public class GameBehaviour : MonoBehaviour {
     [SerializeField] private Sprite redCirclePrefab;
     [SerializeField] private Sprite yellowCirclePrefab;
 
-    private bool goodCandyTagged = false;
+    private bool goodCandyTagged;
     private List<Sprite> candies;
     private int amountOfCandies;
 
@@ -30,6 +30,7 @@ public class GameBehaviour : MonoBehaviour {
 
     void Start () {
         SoundSystemSingleton.Instance.PlayMusicSound(gameMusic);
+        goodCandyTagged = false;
     }
 
     void Update() {
@@ -149,5 +150,9 @@ public class GameBehaviour : MonoBehaviour {
 
     public static void SetIsGameStartedTrue() {
         gameStarted = true;
+    }
+
+    public static void SetIsGameStartedFalse() {
+        gameStarted = false;
     }
 }
